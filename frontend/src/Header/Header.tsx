@@ -1,11 +1,11 @@
-import { Avatar } from "@mantine/core";
+import { Avatar, Indicator } from "@mantine/core";
 import { IconBell, IconSettings, IconZoomReplace } from "@tabler/icons-react";
 
 const Header = () => {
-    return <div className="w-full bg-black px-6 text-white h-28 flex justify-between items-center">
-        <div className="flex gap-2 items-center">
+    return <div className="w-full bg-mine-shaft-950 px-6 text-white h-28 flex justify-between items-center">
+        <div className="flex gap-2 items-center text-bright-sun-400">
             <IconZoomReplace className="h-8 w-8"/>
-            <div className="text-2xl font-semibold"> JobFind</div>
+            <div className="text-3xl font-semibold"> JobFind</div>
         </div>
         <div className="flex gap-10">
             <a href="">İş Bul</a>
@@ -13,13 +13,19 @@ const Header = () => {
             <a href="">İş İlanı Ekle</a>
             <a href="">Hakkımızda</a>
         </div>
-        <div className="flex gap-5 items-center">
-            <IconBell />
-            <div className="flex items-center gap-3">
-                <div>Muhammed</div>
-                <Avatar src="avatar.png" alt="it's me" />
+        <div className="flex gap-3 items-center">
+            <div className="flex items-center gap-2">
+                <div>Furkan</div>
+                <Avatar src="avatar-png.webp" alt="it's me" />
             </div>
-            <IconSettings />
+            <div className="bg-mine-shaft-900 p-1.5 rounded-full">
+                <IconSettings stroke={1.5} />
+            </div>
+            <div className="bg-mine-shaft-900 p-1.5 rounded-full">
+                <Indicator color="pink" size={9} processing>
+                    <IconBell stroke={1.5} />
+                </Indicator>
+            </div>
         </div>
     </div>
 }
