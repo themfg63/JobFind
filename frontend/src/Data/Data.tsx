@@ -12,3 +12,7 @@ export const companies = [
     "THY"
 ];
 
+export const jobCategory = [
+    "Dijital Pazarlama"
+];
+
