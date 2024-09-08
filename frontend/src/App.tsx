@@ -17,7 +17,6 @@ function App(){
         <Routes>
           <Route path='*' element={<HomePage />} />
         </Routes>
-        <HomePage />
       </BrowserRouter>
     </MantineProvider>
   );
