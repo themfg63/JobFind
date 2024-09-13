@@ -13,6 +13,15 @@ export const companies = [
 ];
 
 export const jobCategory = [
-    "Dijital Pazarlama"
+    {
+        "name" : "Dijital Pazarlama",
+        "desc" : "Pazarlama stratejileriyle markaları çevrimiçi olarak tanıtın",
+        "jobs" : "300+ Yeni İş İlanı"
+    },
+    {
+        "name" : "İnsan Kaynakları",
+        "desc" : "İş ve Müşteri İlişkileri, Yetenek Kazanımı",
+        "jobs" : "1K+ Yeni İş İlanı"
+    }
 ];
 
