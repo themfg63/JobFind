@@ -45,3 +45,17 @@ export const jobCategory = [
     }
 ];
 
+export const work = [
+    {
+        "name" : "Öz Geçmişinizi Oluşturun",
+        "desc" : "Becerilerinizle dikkat çekici bir özgeçmiş oluşturun"
+    },
+    {
+        "name" : "Başvuru Yap",
+        "desc" : "becerilerinize uygun işleri bulun ve başvurun"
+    },
+    {
+        "name" : "İşi Alın",
+        "desc" : "işverenlerle bağlantı kurun ve yeni işinize başlayın"
+    }
+]
