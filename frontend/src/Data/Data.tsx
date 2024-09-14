@@ -15,13 +15,33 @@ export const companies = [
 export const jobCategory = [
     {
         "name" : "Dijital Pazarlama",
-        "desc" : "Pazarlama stratejileriyle markaları çevrimiçi olarak tanıtın",
-        "jobs" : "300+ Yeni İş İlanı"
+        "desc" : "Pazarlama stratejileri",
+        "jobs" : "300"
     },
     {
         "name" : "İnsan Kaynakları",
         "desc" : "İş ve Müşteri İlişkileri, Yetenek Kazanımı",
-        "jobs" : "1K+ Yeni İş İlanı"
+        "jobs" : "1K"
+    },
+    {
+        "name" : "Backend Developer",
+        "desc" : ".Net, Java, Php Developer",
+        "jobs" : "1500"
+    },
+    {
+        "name" : "Frontend Developer",
+        "desc" : "Angular, React, TypeScript",
+        "jobs" : "1K"
+    },
+    {
+        "name" : "Finans Uzmanı",
+        "desc" : "Ön Muhasebe, Gelir Gider Kontrolü",
+        "jobs" : "200"
+    },
+    {
+        "name" : "Satış Uzmanı",
+        "desc" : "Müşteri Temsilciliği, Müşteri İlişkileri",
+        "jobs" : "600"
     }
 ];
 
