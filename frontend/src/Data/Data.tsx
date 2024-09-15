@@ -59,3 +59,26 @@ export const work = [
         "desc" : "işverenlerle bağlantı kurun ve yeni işinize başlayın"
     }
 ]
+
+export const testimonials = [
+    {
+        "name" : "Muhammed ÖZTÜRK",
+        "testimonials" : "Çok güzel ve kolay erişebiliriği olan bir uygulama olmuş.",
+        "rating" : 5
+    },
+    {
+        "name" : "Muhammed Erhan TAŞ",
+        "testimonials" : "Bu portal sayesinde işime kavuştum. Çok teşekkür ederim.",
+        "rating" : 5
+    },
+    {
+        "name" : "Seçkin ŞAHİN",
+        "testimonials" : "Biraz ağır olması dışında bir sorun görünmüyor",
+        "rating" : 4
+    },
+    {
+        "name" : "İsmetullah KAYIKÇI",
+        "testimonials" : "Kullanımı kolay ama tema ayarlaması da yapılmalı",
+        "rating" : 4
+    },
+]
