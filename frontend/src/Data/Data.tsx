@@ -1,3 +1,5 @@
+import { link } from "fs";
+
 export const companies = [
     "Google", 
     "Amazon", 
@@ -81,4 +83,16 @@ export const testimonials = [
         "testimonials" : "Kullanımı kolay ama tema ayarlaması da yapılmalı",
         "rating" : 4
     },
+]
+
+export const footerLinks =[
+    {
+        title: "İşlemler", link: ["İş Bul", "Şirket Bul", "Çalışan Bul"]
+    },
+    {
+        title: "Şirketimiz", link: ["Hakkımızda", "İletişim","Gizlilik Politikası","Şartlar & Koşullar"]
+    },
+    {
+        title: "Destek", link: ["Yardım & Destek", "Geri Dönüş", "FAQs"]
+    }
 ]
