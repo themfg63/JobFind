@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Checkbox, CheckIcon, Combobox, Group, Pill, PillsInput, useCombobox } from '@mantine/core';
+import { Checkbox, CheckIcon, Combobox, Group, Input, Pill, PillsInput, useCombobox } from '@mantine/core';
 import { IconSearch, IconZoomReplace } from '@tabler/icons-react';
 
 const groceries = ['🍎 Apples', '🍌 Bananas', '🥦 Broccoli', '🥕 Carrots', '🍫 Chocolate'];
@@ -32,13 +32,15 @@ const MultiInput = () => {
   const handleValueRemove = (val: string) =>
     setValue((current) => current.filter((v) => v !== val));
 
-  const values = value.map((item) => (
-    <Pill key={item} withRemoveButton onRemove={() => handleValueRemove(item)}>
-      {item}
-    </Pill>
-  ));
+  const values = value
+    .slice(0.1)
+    .map((item) => (
+        <Pill key={item} withRemoveButton onRemove={() => handleValueRemove(item)}>
+            {item}
+        </Pill>
+    ))
 
-  const options = data.map((item) => (
+  const options = data.filter((item) => item.toLowerCase().includes(search.trim().toLowerCase())).map((item)  => (
     <Combobox.Option value={item} key={item} active={value.includes(item)}>
         <Group gap="sm">
             <Checkbox size='xs' color='brightSun.4'
@@ -61,33 +63,27 @@ const MultiInput = () => {
             <IconZoomReplace />
             </div>}
         >
-          <Pill.Group>
-            {values}
-
-            <Combobox.EventsTarget>
-              <PillsInput.Field
-              variant='unstyled'
-                onFocus={() => combobox.openDropdown()}
-                onBlur={() => combobox.closeDropdown()}
-                value={search}
-                placeholder="Search values"
-                onChange={(event) => {
-                  combobox.updateSelectedOptionIndex();
-                  setSearch(event.currentTarget.value);
-                }}
-                onKeyDown={(event) => {
-                  if (event.key === 'Backspace' && search.length === 0) {
-                    event.preventDefault();
-                    handleValueRemove(value[value.length - 1]);
-                  }
-                }}
-              />
-            </Combobox.EventsTarget>
-          </Pill.Group>
+        <Pill.Group>
+            {value.length > 0 ? (
+                <>
+                    {values}
+                    {value.length > 1 && (
+                        <Pill>+ {value.length - 1} Daha</Pill>
+                    )}
+                </>
+            ):(
+                <Input.Placeholder>Seçim Yapın</Input.Placeholder>
+            )}
+        </Pill.Group>
         </PillsInput>
       </Combobox.DropdownTarget>
 
       <Combobox.Dropdown>
+        <Combobox.Search 
+            value={search}
+            onChange={(event) => setSearch(event.currentTarget.value)}
+            placeholder='Ara'
+        />
         <Combobox.Options>
           {options}
 
