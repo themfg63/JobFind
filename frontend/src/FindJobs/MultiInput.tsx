@@ -50,7 +50,7 @@ const MultiInput = () => {
                 tabIndex={-1}
                 style={{pointerEvents : 'none'}}
             />
-            <span>{item}</span>
+            <span className='text-mine-shaft-300'>{item}</span>
         </Group>
     </Combobox.Option>
   ))
@@ -72,7 +72,7 @@ const MultiInput = () => {
                     )}
                 </>
             ):(
-                <Input.Placeholder>Seçim Yapın</Input.Placeholder>
+                <Input.Placeholder className='!text-mine-shaft-200'>İş Arayın</Input.Placeholder>
             )}
         </Pill.Group>
         </PillsInput>
