@@ -1,3 +1,4 @@
+import { IconBriefcase, IconMapPin, IconRecharging, icons, IconZoomReplace } from "@tabler/icons-react";
 import { link } from "fs";
 
 export const companies = [
@@ -94,5 +95,20 @@ export const footerLinks =[
     },
     {
         title: "Destek", link: ["Yardım & Destek", "Geri Dönüş", "FAQs"]
+    }
+]
+
+export const dropdownData = [
+    {
+        title: "İş Adı", icon: IconZoomReplace, options: ['Designer','Developer','Ürün Yöneticisi', "Marketing Specialist",'Analiz Uzmanı','Satış ve Pazarlama','İçerik Üreticisi','Müşteri Hizmetleri','Java Developer','Backend Developer','Frontend Developer']
+    },
+    {
+        title: "Konum", icon: IconMapPin, options: ['İstanbul','Ankara','İzmir','Kocaeli','Sakaraya','Bursa','Bolu','Eskişehir','Konya','Tekirdağ','Antalya','Mersin','Adana','Kayseri']
+    },
+    {
+        title: "Deneyim", icon: IconBriefcase, options: ['Junior','Middle','Senior']
+    },
+    {
+        title: "İş Tipi", icon: IconRecharging, options: ['Full Time','Part Time','Hibrit','Uzaktan']
     }
 ]

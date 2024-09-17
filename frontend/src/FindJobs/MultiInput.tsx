@@ -1,17 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Checkbox, CheckIcon, Combobox, Group, Input, Pill, PillsInput, useCombobox } from '@mantine/core';
-import { IconSearch, IconZoomReplace } from '@tabler/icons-react';
+import { IconSearch, IconSelector, IconZoomReplace } from '@tabler/icons-react';
 
-const groceries = ['🍎 Apples', '🍌 Bananas', '🥦 Broccoli', '🥕 Carrots', '🍫 Chocolate'];
 
-const MultiInput = () => {
+
+const MultiInput = (props:any) => {
+
+  useEffect(() => {
+    setData(props.options);
+  },[])
+
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
     onDropdownOpen: () => combobox.updateSelectedOptionIndex('active'),
   });
 
   const [search, setSearch] = useState('');
-  const [data, setData] = useState(groceries);
+  const [data, setData] = useState<string[]>([]);
   const [value, setValue] = useState<string[]>([]);
 
   const exactOptionMatch = data.some((item) => item === search);
@@ -56,11 +61,11 @@ const MultiInput = () => {
   ))
 
   return (
-    <Combobox store={combobox} onOptionSubmit={handleValueSelect} withinPortal={false}>
+    <Combobox  store={combobox} onOptionSubmit={handleValueSelect} withinPortal={false}>
       <Combobox.DropdownTarget>
-        <PillsInput variant='unstyled' rightSection={<Combobox.Chevron />} onClick={() => combobox.openDropdown()} 
-        leftSection={<div className='text-bright-sun-400 p-1 bg-mine-shaft-950 rounded-full mr-1'>
-            <IconZoomReplace />
+        <PillsInput variant='unstyled' rightSection={<IconSelector/>} onClick={() => combobox.openDropdown()} 
+        leftSection={<div className='text-bright-sun-400 p-1 bg-mine-shaft-950 rounded-full mr-2'>
+            <props.icon />
             </div>}
         >
         <Pill.Group>
@@ -72,7 +77,7 @@ const MultiInput = () => {
                     )}
                 </>
             ):(
-                <Input.Placeholder className='!text-mine-shaft-200'>İş Arayın</Input.Placeholder>
+                <Input.Placeholder className='!text-mine-shaft-200'>{props.title}</Input.Placeholder>
             )}
         </Pill.Group>
         </PillsInput>
