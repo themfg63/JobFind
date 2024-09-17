@@ -11,7 +11,7 @@ const FindJobs = () => {
             <SearchBar />
             <Divider size="xs" mx="md" />
             <Jobs />
-            <JobCard />
+            
         </div>
     )
 }

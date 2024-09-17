@@ -112,3 +112,189 @@ export const dropdownData = [
         title: "İş Tipi", icon: IconRecharging, options: ['Full Time','Part Time','Hibrit','Uzaktan']
     }
 ]
+
+export const jobList = [
+    {
+        jobTitle: "Ürün Yöneticisi",
+        company: "meta",
+        applicants: 25,
+        experience: "Junior",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "50",
+        postedDaysAgo: 12,
+        description: "Ürün takibi, yeni ürün ekleme, depo Kontrolü ve uzaktan çalışma fırsatı"
+    },
+    {
+        jobTitle: "Java Developer",
+        company: "thy",
+        applicants: 100,
+        experience: "Middle",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "80",
+        postedDaysAgo: 3,
+        description: "Uygulama ve proje geliştirebilecek iyi seviyede Java bilgisi olan adaylar."
+    },
+    {
+        jobTitle: "Java Developer",
+        company: "thy",
+        applicants: 100,
+        experience: "Middle",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "80",
+        postedDaysAgo: 3,
+        description: "Uygulama ve proje geliştirebilecek iyi seviyede Java bilgisi olan adaylar."
+    },{
+        jobTitle: "Java Developer",
+        company: "thy",
+        applicants: 100,
+        experience: "Middle",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "80",
+        postedDaysAgo: 3,
+        description: "Uygulama ve proje geliştirebilecek iyi seviyede Java bilgisi olan adaylar."
+    },{
+        jobTitle: "Java Developer",
+        company: "thy",
+        applicants: 100,
+        experience: "Middle",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "80",
+        postedDaysAgo: 3,
+        description: "Uygulama ve proje geliştirebilecek iyi seviyede Java bilgisi olan adaylar."
+    },{
+        jobTitle: "Java Developer",
+        company: "thy",
+        applicants: 100,
+        experience: "Middle",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "80",
+        postedDaysAgo: 3,
+        description: "Uygulama ve proje geliştirebilecek iyi seviyede Java bilgisi olan adaylar."
+    },{
+        jobTitle: "Java Developer",
+        company: "thy",
+        applicants: 100,
+        experience: "Middle",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "80",
+        postedDaysAgo: 3,
+        description: "Uygulama ve proje geliştirebilecek iyi seviyede Java bilgisi olan adaylar."
+    },
+    {
+        jobTitle: "Java Developer",
+        company: "thy",
+        applicants: 100,
+        experience: "Middle",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "80",
+        postedDaysAgo: 3,
+        description: "Uygulama ve proje geliştirebilecek iyi seviyede Java bilgisi olan adaylar."
+    },
+    {
+        jobTitle: "Java Developer",
+        company: "thy",
+        applicants: 100,
+        experience: "Middle",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "80",
+        postedDaysAgo: 3,
+        description: "Uygulama ve proje geliştirebilecek iyi seviyede Java bilgisi olan adaylar."
+    },
+    {
+        jobTitle: "Java Developer",
+        company: "thy",
+        applicants: 100,
+        experience: "Middle",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "80",
+        postedDaysAgo: 3,
+        description: "Uygulama ve proje geliştirebilecek iyi seviyede Java bilgisi olan adaylar."
+    },
+    {
+        jobTitle: "Java Developer",
+        company: "thy",
+        applicants: 100,
+        experience: "Middle",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "80",
+        postedDaysAgo: 3,
+        description: "Uygulama ve proje geliştirebilecek iyi seviyede Java bilgisi olan adaylar."
+    },
+    {
+        jobTitle: "Java Developer",
+        company: "thy",
+        applicants: 100,
+        experience: "Middle",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "80",
+        postedDaysAgo: 3,
+        description: "Uygulama ve proje geliştirebilecek iyi seviyede Java bilgisi olan adaylar."
+    },
+    {
+        jobTitle: "Java Developer",
+        company: "thy",
+        applicants: 100,
+        experience: "Middle",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "80",
+        postedDaysAgo: 3,
+        description: "Uygulama ve proje geliştirebilecek iyi seviyede Java bilgisi olan adaylar."
+    },
+    {
+        jobTitle: "Java Developer",
+        company: "thy",
+        applicants: 100,
+        experience: "Middle",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "80",
+        postedDaysAgo: 3,
+        description: "Uygulama ve proje geliştirebilecek iyi seviyede Java bilgisi olan adaylar."
+    },
+    {
+        jobTitle: "Java Developer",
+        company: "thy",
+        applicants: 100,
+        experience: "Middle",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "80",
+        postedDaysAgo: 3,
+        description: "Uygulama ve proje geliştirebilecek iyi seviyede Java bilgisi olan adaylar."
+    },
+    {
+        jobTitle: "Java Developer",
+        company: "thy",
+        applicants: 100,
+        experience: "Middle",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "80",
+        postedDaysAgo: 3,
+        description: "Uygulama ve proje geliştirebilecek iyi seviyede Java bilgisi olan adaylar."
+    },
+    {
+        jobTitle: "Java Developer",
+        company: "thy",
+        applicants: 100,
+        experience: "Middle",
+        jobType: "Full-Time",
+        location: "İstanbul",
+        package: "80",
+        postedDaysAgo: 3,
+        description: "Uygulama ve proje geliştirebilecek iyi seviyede Java bilgisi olan adaylar."
+    }
+]
