@@ -16,7 +16,7 @@ const SearchBar = () => {
         <div className="w-1/5 [&_.mantine-Slider-label]:!translate-y-10">
             <div className="flex text-sm justify-between">
                 <div>Maaş</div>
-                <div>&#8378; {value[0]} - &#8378; {value[1]}</div>
+                <div>&#8378; {value[0]}K - &#8378; {value[1]}K</div>
             </div>
             <RangeSlider color="brightSun.4" size="xs" value={value} labelTransitionProps={{
                 transition: 'skew-down',
