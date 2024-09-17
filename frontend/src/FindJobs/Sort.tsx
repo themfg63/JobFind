@@ -1,4 +1,4 @@
-import { Button, Combobox, useCombobox } from "@mantine/core";
+import { Combobox, useCombobox } from "@mantine/core";
 import { IconAdjustments } from "@tabler/icons-react";
 import { useState } from "react";
 

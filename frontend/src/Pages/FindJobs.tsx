@@ -1,6 +1,7 @@
 import { Divider } from "@mantine/core";
 import SearchBar from "../FindJobs/SearchBar";
 import Jobs from "../FindJobs/Jobs";
+import JobCard from "../FindJobs/JobCard";
 
 
 const FindJobs = () => {
@@ -10,6 +11,7 @@ const FindJobs = () => {
             <SearchBar />
             <Divider size="xs" mx="md" />
             <Jobs />
+            <JobCard />
         </div>
     )
 }

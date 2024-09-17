@@ -1,5 +1,5 @@
-import { IconBriefcase, IconMapPin, IconRecharging, icons, IconZoomReplace } from "@tabler/icons-react";
-import { link } from "fs";
+import { IconBriefcase, IconMapPin, IconRecharging,  IconZoomReplace } from "@tabler/icons-react";
+
 
 export const companies = [
     "Google", 
