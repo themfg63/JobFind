@@ -89,5 +89,5 @@ export const talents = [
         expectedCtc: "50-100",
         location: "Ankara - Şanlıurfa/Türkiye",
         image: "avatar"
-    },
+    }
 ]
