@@ -90,4 +90,38 @@ export const talents = [
         location: "Ankara - Şanlıurfa/Türkiye",
         image: "avatar"
     }
-]
+];
+
+export const profile = {
+    name: "Muhammed Furkan GÜNEŞ",
+    role: "Backend Developer",
+    company: "google",
+    location: "Ankara, Türkiye",
+    about: "Merhaba, Ben Muhammed Furkan GÜNEŞ. İskenderun Tekin Üniversitesi Bilgisayar Mühendislği Mezunuyum. Java Spring Boot ağırlık olmak üzere kendimi backend teknolojileriyle geliştirmekteyim. Stajımı da Jr. JAVA DEVELOPER olarak TEDAŞ Genel Müdürlüğü'nde yaptım. Şu anda iş arayışım devam etmektedir. İLgilenip geri dönüş sağlarsanız sevinirim. İyi günler dilerim herkese..",
+    skills: ["Java","React","MySQL","Spring Boot","TypeScript", "Docker","Postman","HTML","CSS","PostgreSQL"],
+    experience: [
+        {
+            title: "Backend Developer",
+            company: "google",
+            location: "Ankara, Türkiye",
+            startDate: "Nisan 2023",
+            endDate: "Devam Etmekte",
+            description: "As a software engineer at google. I am responsible for designing, developing, and maintaining scalable software solutions that enhance user experience and improve operational effeciency."
+        }
+    ],
+    certifications: [
+        {
+            name: "Google Cloud Eğitimi",
+            issuer: "google",
+            issueDate: "Ağustos 2023",
+            certificateId: "CB6498496"
+        },
+        {
+            name: "Amazon AWS Servisleri",
+            issuer: "amazon",
+            issueDate: "Eylül 2024",
+            certificateId: "498432198"
+        }
+    ]
+}
+
