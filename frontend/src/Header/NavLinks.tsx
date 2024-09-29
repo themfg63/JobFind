@@ -5,7 +5,7 @@ const NavLinks = () => {
     const links=[
         {name: "İş Bul", url:"find-jobs"},
         {name: "Yetenek Bul", url:"find-talent"},
-        {name: "İlan Oluştur", url:"upload-job"},
+        {name: "İlan Oluştur", url:"post-job"},
         {name: "Hakkımızda", url:"about"},
     ]
 
