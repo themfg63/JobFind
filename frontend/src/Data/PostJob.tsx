@@ -30,3 +30,6 @@ export const fields = [
         options: ['50', '100', '150', '200', '250','300','350','400']
     }
 ]
+
+export const content = 
+    '<h4>İş Hakkında</h4><p>Buraya Açıklama Yazınız...</p><h4>Sorumluluklar</h4><ul><li>Sorumluluk Ekleyin...</li></ul><h4>Yeterlilikler ve Beceriler</h4><ul><li>Gerekli Yeterlilikleri ve Becerileri buraya ekleyin...</li></ul>';
