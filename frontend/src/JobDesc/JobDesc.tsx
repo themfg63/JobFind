@@ -1,9 +1,12 @@
 import { ActionIcon, Button, Divider } from "@mantine/core";
 import { IconBookmark, IconMapPin } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
-import { card, skills } from "../Data/JobDescData";
+import { card, desc, skills } from "../Data/JobDescData";
+//@ts-ignore
+import DOMPurify from 'dompurify';
 
 const JobDesc = () => {
+    const data = DOMPurify.sanitize(desc);
     return <div className="w-2/3">
         <div className="flex justify-between">
             <div className="flex gap-2 items-center">
@@ -47,6 +50,31 @@ const JobDesc = () => {
                     </ActionIcon>
                     )
                 }
+            </div>
+        </div>
+        <Divider my="xl" />
+        <div className="[&_h4]:text-xl [&_*]:text-mine-shaft-300 [&_li]:marker:text-bright-sun-400 [&_li]:mb-1 [&_h4]:my-5 [&_h4]:font-semibold [&_h4]:text-mine-shat-200 [&_p]:text-justify " dangerouslySetInnerHTML={{__html:data}}>
+        </div>
+        <Divider my="xl" />
+        <div>
+            <div className="text-xl font-semibold mb-5">Firma Hakkında</div>
+            <div className="flex justify-between mb-3">
+                <div className="flex gap-2 items-center">
+                    <div className="p-3 bg-mine-shaft-800 rounded-xl">
+                        <img className="h-8" src={`/Companies/google.png`} alt="" />
+                    </div>
+                    <div className="flex flex-col">
+                        <div className="font-medium text-lg">Google</div>
+                        <div className="text-mine-shaft-300">10K+ Çalışan</div>
+                    </div>
+                </div>
+                <Link to="">
+                    <Button color="brightSun.4" variant="light">Firma Sayfası</Button>
+                </Link>
+            </div>
+            <div className="text-mine-shaft-300 text-justify">
+                Google, internet araması, çevrimiçi bilgi dağıtımı, reklam teknolojileri ve arama motorları için yatırımlar yapan çok uluslu Amerikan şirketidir. 
+                Şirket İnternet tabanlı hizmet ve ürünler geliştirmektedir. Kârının büyük bir kısmını Google Ads hizmeti üzerinden elde etmektedir.
             </div>
         </div>
     </div>
