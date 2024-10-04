@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import JobDesc from "../JobDesc/JobDesc";
 import RecommendedJobs from "../JobDesc/RecommendedJobs";
 
-const JobDescPage = () => {
+const JobPage = () => {
     return(
         <div className="min-h-[90vh] bg-mine-shaft-950 font-['poppins'] p-4">
             <Link className="my-5 inline-block" to="/find-jobs">
@@ -18,4 +18,4 @@ const JobDescPage = () => {
     )
 }
 
-export default JobDescPage;
+export default JobPage;

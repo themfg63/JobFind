@@ -4,7 +4,7 @@ import Jobs from "../FindJobs/Jobs";
 
 
 
-const FindJobs = () => {
+const FindJobsPage = () => {
     return(
         <div className="min-h-[100vh] bg-mine-shaft-950 font-['poppins']">
             <SearchBar />
@@ -14,4 +14,4 @@ const FindJobs = () => {
     )
 }
 
-export default FindJobs;
+export default FindJobsPage;
