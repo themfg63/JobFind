@@ -7,7 +7,7 @@ const NavLinks = () => {
         {name: "Yetenek Bul", url:"find-talent"},
         {name: "İlan Oluştur", url:"post-job"},
         {name: "Yayınlanan İlanlar", url:"posted-job"},
-        {name: "Hakkımızda", url:"about"},
+        {name: "İş Geçmişi", url:"job-history"},
     ]
 
     const location = useLocation();
