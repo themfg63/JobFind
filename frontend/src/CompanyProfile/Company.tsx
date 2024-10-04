@@ -1,5 +1,8 @@
 import { Avatar, Divider, Tabs, } from "@mantine/core";
 import { IconMapPin } from "@tabler/icons-react";
+import AboutComp from "./AboutComp";
+import CompanyJobs from "./CompanyJobs";
+import CompanyEmployees from "./CompanyEmployees";
 
 const Company = () => {
     return <div className="w-3/4">
@@ -29,9 +32,9 @@ const Company = () => {
                         <Tabs.Tab value="employees">Çalışanlar</Tabs.Tab>
                     </Tabs.List>
 
-                    <Tabs.Panel value="about">Hakkında</Tabs.Panel>
-                    <Tabs.Panel value="jobs">İş İlanları</Tabs.Panel>
-                    <Tabs.Panel value="employees">Çalışanlar</Tabs.Panel>
+                    <Tabs.Panel value="about">{<AboutComp />}</Tabs.Panel>
+                    <Tabs.Panel value="jobs">{<CompanyJobs />}</Tabs.Panel>
+                    <Tabs.Panel value="employees">{<CompanyEmployees />}</Tabs.Panel>
                 </Tabs>
             </div>
         </div>
