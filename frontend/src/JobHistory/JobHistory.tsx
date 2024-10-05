@@ -11,7 +11,7 @@ const JobHistory = () => {
                 <Tabs.List className="[&_button]:!text-lg font-semibold mb-5 [&_button[data-active='true']]:text-bright-sun-400">
                     <Tabs.Tab value="applied">Başvurulanlar</Tabs.Tab>
                     <Tabs.Tab value="saved">Kaydedilenler</Tabs.Tab>
-                    <Tabs.Tab value="offered">Teklif Edilenler</Tabs.Tab>
+                    <Tabs.Tab value="offered">Görüntülenler</Tabs.Tab>
                     <Tabs.Tab value="interviewing">Mülakatlar</Tabs.Tab>
                 </Tabs.List>
                 <Tabs.Panel value="applied">

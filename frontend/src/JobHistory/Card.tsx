@@ -1,5 +1,5 @@
-import { Divider, Text } from "@mantine/core";
-import { IconBookmark, IconClockHour3 } from "@tabler/icons-react";
+import { Button, Divider, Text } from "@mantine/core";
+import { IconBookmark, IconBookmarkFilled, IconCalendarMonth, IconClockHour3 } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 
 const Card = (props:any) => {
@@ -14,7 +14,7 @@ const Card = (props:any) => {
                     <div className="text-xs text-mine-shaft-300">{props.company} &#x2022; {props.applicants} Başvuru</div>
                 </div>
             </div>
-            <IconBookmark className="text-mine-shaft-300 cursor-pointer"/>
+            {props.saved?<IconBookmarkFilled className="cursor-pointer text-bright-sun-400" stroke={1.5} />:<IconBookmark className="cursor-pointer text-mine-shaft-300" stroke={1.5} />}
         </div>
         <div className="flex gap-2 [&>div]:py-1 [&>div]:px-2 [&>div]:bg-mine-shaft-800 [&>div]:text-bright-sun-400 [&>div]:rounded-lg text-xs">
             <div>{props.experience}</div>
@@ -30,9 +30,21 @@ const Card = (props:any) => {
                 &#8378; {props.package} / saat
             </div>
             <div className="flex gap-1 text-xs text-mine-shaft-400 items-center">
-                <IconClockHour3 stroke={1.5} className="h-5 w-5"/> {props.postedDaysAgo} Gün Önce
+                <IconClockHour3 stroke={1.5} className="h-5 w-5"/> {props.postedDaysAgo} Gün Önce {props.applied?"Başvuruldu":props.offered?"Görüntülendi":"Yayınlandı"}
             </div>
         </div>
+        {(props.offered || props.interviewing) && <Divider color="mineShaft.7" size="xs" />}
+        {
+            props.offered && <div className="flex gap-2">
+                <Button color="brightSun.4" variant="outline" fullWidth>Kabul Et</Button>
+                <Button color="brightSun.4" variant="light" fullWidth>Red Et</Button>
+            </div>
+        }
+        {
+            props.interviewing && <div className="flex gap-1 text-sm items-center">
+                <IconCalendarMonth className="text-bright-sun-400 w-5 h-5" stroke={1.5} /> 8 Ekim 2024 &bull; <span className="text-mine-shaft-400">10:00</span>
+            </div>
+        }
     </Link>
 }
 
