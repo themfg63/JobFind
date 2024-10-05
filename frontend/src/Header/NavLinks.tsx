@@ -1,4 +1,3 @@
-import { url } from "inspector";
 import { Link, useLocation } from "react-router-dom";
 
 const NavLinks = () => {
@@ -8,6 +7,7 @@ const NavLinks = () => {
         {name: "İlan Oluştur", url:"post-job"},
         {name: "Yayınlanan İlanlar", url:"posted-job"},
         {name: "İş Geçmişi", url:"job-history"},
+        {name: "Kayıt Ol", url: "signup"},
     ]
 
     const location = useLocation();
