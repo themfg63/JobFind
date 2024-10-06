@@ -11,15 +11,15 @@ export const fields = [
     {
         label: "Firma",
         placeholder: "Firma Adı Girin",
-        options: ['google','microsoft','meta','netflix','adobe','facebook','amazon','apple','spotify'],
-        value:"google",
+        options: ['Google','Microsoft','Meta','Netflix','Adobe','Facebook','Amazon','Apple','Spotify'],
+        value:"Google",
         leftSection: IconBriefcase
     },
     {
         label: "Konum",
         placeholder: "Konum Girin",
         options: ['İstanbul','Ankara','İzmir','Eskişehir','Bursa','Sakarya','Bolu','Kocaeli','Şanlıurfa','Adana','Gaziantep'],
-        value: "Ankara",
+        value: "Ankara, Türkiye",
         leftSection: IconMapPin
     }
 ]
