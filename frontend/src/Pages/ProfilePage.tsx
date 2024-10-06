@@ -1,9 +1,10 @@
-import { Divider } from "@mantine/core";
+import { Divider } from "@mantine/core"
+import Profile from "../Profile/Profile";
 
 const ProfilePage = () => {
     return <div className="min-h-[90vh] bg-mine-shaft-950 font-['poppins']">
         <Divider mx="md" mb="xl" />
-        Profilim
+        <Profile />
     </div>
 }
 
