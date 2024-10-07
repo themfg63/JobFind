@@ -1,11 +1,13 @@
 import { ActionIcon, Divider, TagsInput, Textarea } from "@mantine/core";
-import { IconBriefcase, IconDeviceFloppy, IconMapPin, IconPencil } from "@tabler/icons-react";
+import { IconBriefcase, IconDeviceFloppy, IconMapPin, IconPencil, IconPlus } from "@tabler/icons-react";
 import { useState } from "react";
 import SelectInput from "./SelectInput";
 import { fields } from "../Data/Profile";
 import { profile } from "../Data/TalentData";
 import ExpCard from "./ExpCard";
 import CertiCard from "./CertiCard";
+import ExpInput from "./ExpInput";
+import CertiInput from "./CertiInput";
 
 
 const Profile = () => {
@@ -15,6 +17,8 @@ const Profile = () => {
         'Java Spring Boot ağırlık olmak üzere kendimi backend teknolojileriyle geliştirmekteyim. Stajımı da Jr. JAVA DEVELOPER olarak TEDAŞ Genel Müdürlüğünde yaptım. Şu anda iş arayışım devam etmektedir.'+
     'İlgilenip geri dönüş sağlarsanız sevinirim. İyi günler dilerim herkese..');
     const [skills,setSkills] = useState(["Java","React","MySQL","Spring Boot","TypeScript", "Docker","Postman","HTML","CSS","PostgreSQL"]);
+    const [addExp,setAddExp] = useState(false);
+    const [addCerti,setAddCerti] = useState(false);
 
     const handleEdit = (index:any) => {
         const newEdit=[...edit];
@@ -90,28 +94,42 @@ const Profile = () => {
                 <Divider my="xl" />
                 <div>
                     <div className="text-2xl font-semibold mb-4 flex justify-between">
-                        Deneyimler
-                        <ActionIcon onClick={() => handleEdit(3)} size="lg" color="brightSun.4" variant="subtle">
-                            {edit[3] ? <IconDeviceFloppy className="h-4/5 w-4/5" /> : <IconPencil className="h-4/5 w-4/5"/>}
-                        </ActionIcon>
+                        Deneyimlerim
+                        <div className="flex gap-2">
+                            <ActionIcon onClick={()=> setAddExp(true)} size="lg" color="brightSun.4" variant="subtle">
+                                <IconPlus className="h-4/5 w-4/5" />
+                            </ActionIcon>
+                            <ActionIcon onClick={() => handleEdit(3)} size="lg" color="brightSun.4" variant="subtle">
+                                {edit[3] ? <IconDeviceFloppy className="h-4/5 w-4/5" />:<IconPencil className="h-4/5 w-4/5" />}
+                            </ActionIcon>
+                        </div>
                     </div>
                     <div className="flex flex-col gap-8">
                         {
-                            profile.experience.map((exp,index) => <ExpCard key={index} {...exp} />)
+                            profile.experience.map((exp,index) => <ExpCard key={index} {...exp} edit={edit[3]} />)
                         }
+                        {addExp && <ExpInput add setEdit={setAddExp} />}
                     </div>
                 </div>
                 <Divider my="xl" />
                 <div>
                     <div className="text-2xl font-semibold mb-4 flex justify-between">
                         Sertifikalarım
-                        <ActionIcon onClick={()=>handleEdit(4)} size="lg" color="brightSun.4" variant="subtle">
-                            {edit[4] ? <IconDeviceFloppy className="h-4/5 w-4/5" /> : <IconPencil className="h-4/5 w-4/5" />}
-                        </ActionIcon>
+                        <div className="flex gap-2">
+                            <ActionIcon onClick={() => setAddCerti(true)} size="lg" color="brightSun.4" variant="subtle">
+                                <IconPlus className="h-4/5 w-4/5" />
+                            </ActionIcon>
+                            <ActionIcon onClick={() => handleEdit(4)} size="lg" color="brightSun.4" variant="subtle">
+                                {edit[4] ? <IconDeviceFloppy className="h-4/5 w-4/5" /> : <IconPencil className="h-4/5 w-4/5" />}
+                            </ActionIcon>
+                        </div>
                     </div>
                     <div className="flex flex-col gap-8">
                         {
-                            profile.certifications.map((certi, index) => <CertiCard key={index} {...certi} />)
+                            profile.certifications.map((certi, index) => <CertiCard key={index} edit={edit[4]} {...certi} />)
+                        }
+                        {
+                            addCerti && <CertiInput setEdit={setAddCerti} />
                         }
                     </div>
                 </div>
