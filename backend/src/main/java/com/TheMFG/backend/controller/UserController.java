@@ -1,6 +1,7 @@
 package com.TheMFG.backend.controller;
 
 import com.TheMFG.backend.dto.UserDTO;
+import com.TheMFG.backend.exception.JobPortalException;
 import com.TheMFG.backend.service.Interface.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class UserController {
 
     // Kullanıcı oluşturma Post işlemi
     @PostMapping("/register")
-    public ResponseEntity<UserDTO> registerUser(@RequestBody @Valid UserDTO userDTO){
+    public ResponseEntity<UserDTO> registerUser(@RequestBody @Valid UserDTO userDTO) throws JobPortalException {
         userDTO = userService.registerUser(userDTO);
         return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
     }
