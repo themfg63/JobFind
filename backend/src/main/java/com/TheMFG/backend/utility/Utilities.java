@@ -11,6 +11,9 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 
+/* sequence class'ıyla veritabanında kaç kullanıcı olduğunun sayısını tutacağımız yapıdır.
+artan sıra numaralarını üretmek için kullanılacaktır.
+ */
 @Component
 public class Utilities {
     private static MongoOperations mongoOperation;

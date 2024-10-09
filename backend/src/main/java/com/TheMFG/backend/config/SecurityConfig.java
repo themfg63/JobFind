@@ -14,6 +14,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    /* Kullanıcıların belirlenen url'ler ile yetkilendirilmesin sağlayan spring security bean'i */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests((req) -> req.requestMatchers("/**").permitAll()

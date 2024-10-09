@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+
+/* alınan hatanın mesajı, kodu ve zamanını tutup özel olarak oluşturduğumuz exceptionlara yöneltme işlemi */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

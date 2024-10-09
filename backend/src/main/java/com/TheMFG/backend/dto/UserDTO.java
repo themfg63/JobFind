@@ -8,17 +8,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/* kullanıcı oluştururken kullanılan dto */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
     private Long id;
 
-    @NotBlank(message = "{user.name.absent}")
+    @NotBlank(message = "{user.name.absent}")   // string değerin boş bırakılamayacağını belirten validation anatasyonu
     private String name;
 
     @NotBlank(message = "{user.email.absent}")
-    @Email(message = "[user.email.invalid}")
+    @Email(message = "[user.email.invalid}")    // girilen string değerin email formatında olduğunu kontrol eder
     private String email;
 
     @NotBlank(message = "{user.password.absent}")
@@ -27,6 +28,7 @@ public class UserDTO {
 
     private AccountType accountType;
 
+    // mapper
     public User toEntity(){
         return new User(this.id, this.name, this.email, this.password, this.accountType);
     }
