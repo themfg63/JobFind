@@ -1,5 +1,5 @@
-import PostedJob from "../PostedJob/PostedJob";
-import PostedJobDesc from "../PostedJob/PostedJobDesc";
+import PostedJob from "../Components/PostedJob/PostedJob";
+import PostedJobDesc from "../Components/PostedJob/PostedJobDesc";
 
 const PostedJobPage = () => {
     return <div className="min-h-[90vh] bg-mine-shaft-950 font-['poppins'] p-4">

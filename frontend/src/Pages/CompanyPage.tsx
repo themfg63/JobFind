@@ -1,8 +1,8 @@
 import { Button, } from "@mantine/core"
 import { IconArrowLeft } from "@tabler/icons-react"
 import { Link } from "react-router-dom"
-import Company from "../CompanyProfile/Company"
-import SimilarCompanies from "../CompanyProfile/SimilarCompanies"
+import Company from "../Components/CompanyProfile/Company"
+import SimilarCompanies from "../Components/CompanyProfile/SimilarCompanies"
 
 const CompanyPage = () => {
     return <div className="min-h-[90vh] bg-mine-shaft-950 font-['poppins'] p-4">
