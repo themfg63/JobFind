@@ -3,23 +3,46 @@ import { IconAt, IconLock } from "@tabler/icons-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { registerUser } from "../../Services/UserService";
+import { signupValidation } from "../../Services/FormValidation";
 
-const form={
-    name:"",
-    email:"",
-    password:"",
-    confirmPassword:"",
-    accountType:"APPLICANT"
-}
 
-const SignUp = (props:any) => {
+
+const SignUp = () => {
+    const form={
+        name:"",
+        email:"",
+        password:"",
+        confirmPassword:"",
+        accountType:"APPLICANT"
+    }
+
     const [data, setData] = useState(form);
+    const [formError, setFormError] = useState(form);
 
     const handleChange = (event:any) => {
-        if(typeof(event)=="string"){
+        if(typeof(event) == "string"){
             setData({...data, accountType:event});
-        }else{
-            setData({...data, [event.target.name]:event.target.value});
+            return;
+        }
+        let name = event.target.name,
+        value = event.target.value;
+        setData({...data, [name]:value});
+        setFormError({...formError, [name]:signupValidation(name,value)})
+        
+        if(name === "password" && data.confirmPassword !== ""){
+            let err= "";
+            if(data.confirmPassword !== value){
+                err = "Şifreler Uyuşmuyor!";
+            }
+            setFormError({...formError, [name]:signupValidation(name,value), confirmPassword: err});
+        }
+
+        if(name === "confirmPassword"){
+            if(data.password !== value){
+                setFormError({...formError, [name]: "Şifreler Uyuşmuyor!"});
+            }else{
+                setFormError({...formError, confirmPassword: ""});
+            }
         }
     }
 
@@ -38,6 +61,7 @@ const SignUp = (props:any) => {
         withAsterisk
         label="Ad Soyad"
         placeholder="Adınızı ve Soyadınızı Girin"
+        error={formError.name}
     />
     <TextInput
         name="email"
@@ -47,6 +71,7 @@ const SignUp = (props:any) => {
         leftSection={<IconAt style={{width: rem(16), height: rem(16)}}  />}
         label="Email"
         placeholder="Email Adresinizi Girin"
+        error={formError.email}
     />    
     <PasswordInput
         name="password"
@@ -56,6 +81,7 @@ const SignUp = (props:any) => {
         leftSection={<IconLock style={{width: rem(18), height: rem(18)}} stroke={1.5}/>}
         label="Şifre"
         placeholder="Şifrenizi Girin"
+        error={formError.password}
     />
     <PasswordInput
         name="confirmPassword"
@@ -65,6 +91,7 @@ const SignUp = (props:any) => {
         leftSection={<IconLock style={{width: rem(18), height: rem(18)}} stroke={1.5}/>}
         label="Şifre Tekrar"
         placeholder="Şifrenizi Tekrar Girin"
+        error={formError.confirmPassword}
     />
     <Radio.Group
         value={data.accountType}
