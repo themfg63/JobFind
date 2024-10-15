@@ -1,9 +1,10 @@
 import './App.css';
-import { createTheme, Divider, MantineProvider} from '@mantine/core';
+import { createTheme, Divider, MantineProvider, Notification} from '@mantine/core';
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import '@mantine/tiptap/styles.css';
 import '@mantine/dates/styles.css';
+import '@mantine/notifications/styles.css';
 import HomePage from './Pages/HomePage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import FindTalentPage from './Pages/FindTalentPage';
@@ -19,6 +20,7 @@ import SignUpPage from './Pages/SignUpPage';
 import ProfilePage from './Pages/ProfilePage';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
+import { Notifications } from '@mantine/notifications';
 
 
 function App(){
@@ -34,6 +36,7 @@ function App(){
   })
   return(
     <MantineProvider defaultColorScheme='dark' theme={theme}>
+      <Notifications position="top-center" zIndex={1000} />
       <BrowserRouter>
       <div className='relative'>
         <Header />
