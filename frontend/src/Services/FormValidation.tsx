@@ -27,19 +27,20 @@ const signupValidation = (name:string, value:string) => {
 }
 
 const loginValidation = (name:string, value:string) => {
-    switch (name) {
+    switch (name){
         case "email":
             if(value.length === 0){
-                return "Email Boş Bırakılamaz."
+                return "Email Adresi Boş Bırakılamaz.";
             }
             return "";
         case "password":
             if(value.length === 0){
-                return "Şifre Boş Bırakılamaz";
+                return "Şifre Boş Bırakılamaz.";
             }
             return "";
         default:
             return "";
     }
 }
+
 export {signupValidation, loginValidation};
