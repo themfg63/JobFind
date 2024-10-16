@@ -30,6 +30,6 @@ public class UserController {
     /* PostMappin Anatasyonu ile kullanıcı giriş işlemi */
     @PostMapping("/login")
     public ResponseEntity<UserDTO> loginUser(@RequestBody @Valid LoginDTO loginDTO) throws JobPortalException{
-        return new ResponseEntity<>(userService.loginUser(loginDTO),HttpStatus.OK);
+        return new ResponseEntity<>(userService.loginUser(loginDTO), HttpStatus.OK);
     }
 }
