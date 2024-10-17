@@ -11,6 +11,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 
+import java.security.SecureRandom;
+
 /* sequence class'ıyla veritabanında kaç kullanıcı olduğunun sayısını tutacağımız yapıdır.
 artan sıra numaralarını üretmek için kullanılacaktır.
  */
@@ -34,5 +36,15 @@ public class Utilities {
             throw new JobPortalException("anahtar için sıra kimliği alınamıyor: " + key);
         }
         return seq.getSeq();
+    }
+
+    // maile gönderilecek 6 haneli kodu random olarak üretme methodu
+    public static String generateOTP(){
+        StringBuilder otp = new StringBuilder();
+        SecureRandom random = new SecureRandom();
+        for(int i=0;i<6;i++){
+            otp.append(random.nextInt(10));
+        }
+        return otp.toString();
     }
 }
