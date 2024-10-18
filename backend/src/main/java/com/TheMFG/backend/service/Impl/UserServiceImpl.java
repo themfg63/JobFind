@@ -20,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service(value = "userService")
@@ -78,6 +79,7 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+
     @Override
     public ResponseDTO changePassword(LoginDTO loginDTO) throws JobPortalException{
         User user = userRepository.findByEmail(loginDTO.getEmail()).orElseThrow(()->new JobPortalException("USER_NOT_FOUND"));
@@ -85,8 +87,14 @@ public class UserServiceImpl implements UserService {
         return new ResponseDTO("Şifre Başarıyla Değiştirildi!");
     }
 
-    @Scheduled(fixedRate = 3000)
+    //60 dakikada bir doğrulama kodunu silen method
+    @Scheduled(fixedRate = 60000)
     public void removeExpiredOTPs(){
-        System.out.println("Doğrulama kodu silme denemesi");
+        LocalDateTime expiry = LocalDateTime.now().minusMinutes(5);
+        List<OTP> expiredOTPs = otpRepository.findByCreationTimeBefore(expiry);
+        if(!expiredOTPs.isEmpty()){
+            otpRepository.deleteAll(expiredOTPs);
+            System.out.println( expiredOTPs.size() + ". Doğrulama Kodunun süresi doldu.");
+        }
     }
 }
