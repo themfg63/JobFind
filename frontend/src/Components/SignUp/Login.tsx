@@ -1,10 +1,12 @@
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { loginValidation } from "../../Services/FormValidation";
 import { Button, PasswordInput, TextInput } from "@mantine/core";
 import { IconAt, IconCheck, IconLock, IconX } from "@tabler/icons-react";
 import { loginUser } from "../../Services/UserService";
 import { notifications } from "@mantine/notifications";
+import { useDisclosure } from "@mantine/hooks";
+import ResetPassword from "./ResetPassword";
 
 const Login = () => {
     const form = {
@@ -15,6 +17,7 @@ const Login = () => {
     const [data,setData] = useState<{[key:string]:string}>(form);
     const [formError,setFormError] = useState<{[key:string]:string}>(form);
     const navigate = useNavigate();
+    const [opened, {open, close}] = useDisclosure(false);
 
     const handleChange = (event:any) => {
         setFormError({...formError, [event.target.name]:""});
@@ -60,7 +63,7 @@ const Login = () => {
         }
     }
 
-    return <div className="w-1/2 px-20 flex flex-col gap-3 justify-center">
+    return <> <div className="w-1/2 px-20 flex flex-col gap-3 justify-center">
         <div className="text-2xl font-semibold">Giriş Yap</div>
         <TextInput
             value={data.email}
@@ -86,8 +89,11 @@ const Login = () => {
         <div className="text-center">
             Bir Hesabınız yok mu?
             <span className="text-bright-sun-400 hover:underline cursor-pointer" onClick={()=>{navigate("/signup");setFormError(form);setData(form)}}> Hesap Oluştur</span>
+            <div onClick={open} className="text-bright-sun-400 hover:underline cursor-pointer text-center">Şifrenizi mi Unuttunuz ?</div>
         </div>
     </div>
+    <ResetPassword opened={opened} close={close} />
+    </>
 }
 
 export default Login;
