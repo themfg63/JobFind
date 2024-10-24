@@ -79,11 +79,11 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
-
     @Override
     public ResponseDTO changePassword(LoginDTO loginDTO) throws JobPortalException{
-        User user = userRepository.findByEmail(loginDTO.getEmail()).orElseThrow(()->new JobPortalException("USER_NOT_FOUND"));
+        User user = userRepository.findByEmail(loginDTO.getEmail()).orElseThrow(() -> new JobPortalException("USER_NOT_FOUND"));
         user.setPassword(passwordEncoder.encode(loginDTO.getPassword()));
+        userRepository.save(user);
         return new ResponseDTO("Şifre Başarıyla Değiştirildi!");
     }
 
