@@ -1,18 +1,27 @@
 import { Avatar, Menu, rem, Switch } from "@mantine/core";
 import { IconFileText, IconLogout2, IconMessageCircle, IconMoon, IconMoonStars, IconSun, IconUserCircle } from "@tabler/icons-react";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { removeUser } from "../../Slices/UserSlice";
 
 const ProfileMenu = () =>{
 
     const [checked, setChecked] = useState(false);
     const [opened, setOpened] = useState(false);
+    const dispatch = useDispatch();
+    const user = useSelector((state:any) => state.user);
+
+    const handleLogout = () => {
+        dispatch(removeUser());
+    }
+
 
     return(
         <Menu shadow="md" width={200} opened={opened} onChange={setOpened}>
             <Menu.Target>
                 <div className="flex cursor-pointer items-center gap-2">
-                    <div>Furkan</div>
+                    <div>{user.name}</div>
                     <Avatar src="/avatar.png" alt="it's me" />
                 </div>
             </Menu.Target>
@@ -46,7 +55,7 @@ const ProfileMenu = () =>{
                     Dark Mode
                 </Menu.Item>
                 <Menu.Divider />
-                <Menu.Item color="red" leftSection={<IconLogout2 style={{width: rem(14), height: rem(14)}} />}>
+                <Menu.Item onClick={handleLogout} color="red" leftSection={<IconLogout2 style={{width: rem(14), height: rem(14)}} />}>
                     Çıkış Yap
                 </Menu.Item>
             </Menu.Dropdown>

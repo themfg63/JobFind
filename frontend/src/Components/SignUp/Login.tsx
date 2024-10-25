@@ -1,14 +1,19 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { loginValidation } from "../../Services/FormValidation";
-import { Button, PasswordInput, TextInput } from "@mantine/core";
-import { IconAt, IconCheck, IconLock, IconX } from "@tabler/icons-react";
+import { Button, LoadingOverlay, PasswordInput, TextInput } from "@mantine/core";
+import { IconAt, IconLock,} from "@tabler/icons-react";
 import { loginUser } from "../../Services/UserService";
-import { notifications } from "@mantine/notifications";
 import { useDisclosure } from "@mantine/hooks";
 import ResetPassword from "./ResetPassword";
+import { useDispatch } from "react-redux";
+import { errorNotification, successNotification } from "../../Services/NotificationService";
+import { setUser } from "../../Slices/UserSlice";
 
 const Login = () => {
+    const dispatch = useDispatch();
+    const [loading,setLoading] = useState(false);
+
     const form = {
         email: "",
         password: "",
@@ -34,36 +39,32 @@ const Login = () => {
         }
         setFormError(newFormError);
         if(valid){
+            setLoading(true); 
             loginUser(data).then((res) => {
                 console.log(res);
-                notifications.show({
-                    title: "Giriş Başarılı",
-                    message: "Ana Sayfaya Yönlendiriliyorsunuz...",
-                    withCloseButton: true,
-                    icon: <IconCheck style={{width: "90%",height:"90%"}}/>,
-                    color: "teal",
-                    withBorder: true,
-                    className: "!border-green-500"
-                })
+                successNotification("Giriş Başarılı!", "Ana Sayfaya Yönlendiriliyorsunuz...");
                 setTimeout(() => {
+                    setLoading(false);
+                    dispatch(setUser(res));
                     navigate("/");
-                }, 4000);
+                },4000)
             }).catch((err) => {
+                setLoading(false);
                 console.log(err);
-                notifications.show({
-                    title: "Giriş Yaparken Beklenmedik Bir Hata Oluştu",
-                    message: err.response.data.errorMessage,
-                    withCloseButton: true,
-                    icon: <IconX style={{width: "90%",height:"90%"}}/>,
-                    color: "red",
-                    withBorder: true,
-                    className: "!border-red-500"
-                })
-            })
+                errorNotification("Giriş Yapılamadı!", err.response.data.errorMessage);
+            });
         }
     }
+    
 
-    return <> <div className="w-1/2 px-20 flex flex-col gap-3 justify-center">
+    return <>
+    <LoadingOverlay
+        visible={loading}
+        zIndex={1000}
+        overlayProps={{radius: 'sm',blur: 2}}
+        loaderProps={{color: 'brightSun.4', type: 'bars'}}
+    /> 
+    <div className="w-1/2 px-20 flex flex-col gap-3 justify-center">
         <div className="text-2xl font-semibold">Giriş Yap</div>
         <TextInput
             value={data.email}
@@ -85,7 +86,14 @@ const Login = () => {
             withAsterisk
             placeholder="Şifrenizi Girin"
         />
-        <Button onClick={handleSubmit} autoContrast variant="filled">Giriş Yap</Button>
+        <Button
+            loading={loading}
+            onClick={handleSubmit}
+            autoContrast
+            variant="filled"
+        >
+            Giriş Yap
+        </Button>
         <div className="text-center">
             Bir Hesabınız yok mu?
             <span className="text-bright-sun-400 hover:underline cursor-pointer" onClick={()=>{navigate("/signup");setFormError(form);setData(form)}}> Hesap Oluştur</span>
