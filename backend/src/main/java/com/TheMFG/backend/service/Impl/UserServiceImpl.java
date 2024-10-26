@@ -8,6 +8,7 @@ import com.TheMFG.backend.entity.User;
 import com.TheMFG.backend.exception.JobPortalException;
 import com.TheMFG.backend.repository.OTPRepository;
 import com.TheMFG.backend.repository.UserRepository;
+import com.TheMFG.backend.service.Interface.ProfileService;
 import com.TheMFG.backend.service.Interface.UserService;
 import com.TheMFG.backend.utility.Data;
 import com.TheMFG.backend.utility.Utilities;
@@ -34,6 +35,8 @@ public class UserServiceImpl implements UserService {
     private JavaMailSender mailSender;
     @Autowired
     private OTPRepository otpRepository;
+    @Autowired
+    private ProfileService profileService;
 
     //DTO parametreli kullanıcı oluşturma methodu
     @Override
@@ -42,6 +45,7 @@ public class UserServiceImpl implements UserService {
         if(optional.isPresent()){
             throw new JobPortalException("USER_FOUND");
         }
+        userDTO.setProfileId(profileService.createProfile(userDTO.getEmail()));
         userDTO.setId(Utilities.getNextSequence("users"));
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         User user = userDTO.toEntity();

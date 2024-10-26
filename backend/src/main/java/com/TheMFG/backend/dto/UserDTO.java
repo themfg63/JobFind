@@ -28,8 +28,10 @@ public class UserDTO {
 
     private AccountType accountType;
 
+    private Long profileId;
+
     // mapper
     public User toEntity(){
-        return new User(this.id, this.name, this.email, this.password, this.accountType);
+        return new User(this.id, this.name, this.email, this.password, this.accountType,this.profileId);
     }
 }
