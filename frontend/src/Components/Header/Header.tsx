@@ -9,7 +9,7 @@ const Header = () => {
     const location = useLocation();
     const user = useSelector((state:any) => state.user);
 
-    return location.pathname!="/signup" && location.pathname!="/login"?<div className="w-full bg-mine-shaft-950 px-6 text-white h-28 flex justify-between items-center font-['poppins']">
+    return location.pathname != "/signup" && location.pathname != "/login"?<div className="w-full bg-mine-shaft-950 px-6 text-white h-28 flex justify-between items-center font-['poppins']">
         <div className="flex gap-1 items-center text-bright-sun-400">
             <IconZoomReplace className="h-8 w-8"/>
             <div className="text-3xl font-semibold"> JobFind</div>
