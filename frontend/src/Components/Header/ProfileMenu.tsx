@@ -11,6 +11,7 @@ const ProfileMenu = () =>{
     const [opened, setOpened] = useState(false);
     const dispatch = useDispatch();
     const user = useSelector((state:any) => state.user);
+    const profile = useSelector((state:any) => state.profile);
 
     const handleLogout = () => {
         dispatch(removeUser());
@@ -22,7 +23,7 @@ const ProfileMenu = () =>{
             <Menu.Target>
                 <div className="flex cursor-pointer items-center gap-2">
                     <div>{user.name}</div>
-                    <Avatar src="/avatar.png" alt="it's me" />
+                    <Avatar src={profile.picture? `data:image/jpeg;base64,${profile.picture}`:"/avatar.png"} alt="it's me" />
                 </div>
             </Menu.Target>
             <Menu.Dropdown onChange={() => setOpened(true)}>
