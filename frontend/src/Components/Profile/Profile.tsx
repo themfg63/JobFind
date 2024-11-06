@@ -1,16 +1,11 @@
-import { ActionIcon, Avatar, Divider, FileInput, Indicator, TagsInput, Textarea } from "@mantine/core";
-import { IconDeviceFloppy, IconPencil, IconPlus } from "@tabler/icons-react";
+import {  Avatar, Divider, FileInput, Indicator} from "@mantine/core";
+import { IconPencil } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
-import ExpCard from "./ExpCard";
-import CertiCard from "./CertiCard";
-import ExpInput from "./ExpInput";
-import CertiInput from "./CertiInput";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../Services/ProfileService";
 import Info from "./Info";
 import { setProfile } from "../../Slices/ProfileSlice";
-import { error } from "console";
 import About from "./About";
 import Skills from "./Skills";
 import Experience from "./Experience";

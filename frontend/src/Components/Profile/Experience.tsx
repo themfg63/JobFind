@@ -22,7 +22,7 @@ const Experience = () => {
                     <IconPlus className="w-4/5 h-4/5" stroke={1.5} />
                 </ActionIcon>
                 <ActionIcon onClick={handleClick} variant="subtle" color={edit ? "red.8":"brightSun.4"} size="lg">
-                    {edit ? <IconX className="w-4/5 h-4/5" stroke={1.5} /> : <IconPencil className="w-4/5 h-4/5" stroke={1.5} />}
+                    {edit ? <IconX className="w-4/5 h-4/5" stroke={1.5} /> : <IconPencil className="w-4/5 h-4/5" stroke={1.5}/>}
                 </ActionIcon>
             </div>
         </div>

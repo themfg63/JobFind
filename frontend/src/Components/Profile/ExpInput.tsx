@@ -29,10 +29,13 @@ const ExpInput = (props:any) => {
 
     const handleSave = () => {
         form.validate();
+
         if(!form.isValid()){
             return;
         }
+
         let exp = [...profile.experiences];
+        
         if(props.add){
             exp.push(form.getValues());
             exp[exp.length-1].startDate = exp[exp.length-1].startDate.toISOString();
@@ -113,7 +116,7 @@ const ExpInput = (props:any) => {
             label="Şu an da Burada Çalışıyorum."
         />
         <div className="my-3 flex gap-5">
-            <Button color="brightSun.4" onClick={() => props.setEdit(false)} variant="outline">Kaydet</Button>
+            <Button color="brightSun.4" onClick={handleSave} variant="outline">Kaydet</Button>
             <Button color="red.8" onClick={() => props.setEdit(false)} variant="light">İptal Et</Button>
         </div>
     </div>
