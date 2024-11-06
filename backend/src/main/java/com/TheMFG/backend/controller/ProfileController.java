@@ -24,7 +24,7 @@ public class ProfileController {
     }
 
     //id'ye göre profil güncelleme
-    @PutMapping
+    @PutMapping("/update")
     public ResponseEntity<ProfileDTO> updateProfile(@RequestBody ProfileDTO profileDTO) throws JobPortalException{
         return new ResponseEntity<>(profileService.updateProfile(profileDTO),HttpStatus.OK);
     }
