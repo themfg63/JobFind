@@ -1,5 +1,5 @@
 import { ActionIcon } from "@mantine/core";
-import { IconBriefcase, IconDeviceFloppy, IconMapPin, IconPencil } from "@tabler/icons-react";
+import { IconBriefcase, IconCheck,  IconMapPin, IconPencil, IconX } from "@tabler/icons-react";
 import { useState } from "react";
 import SelectInput from "./SelectInput";
 import { fields } from "../../Data/Profile";
@@ -21,9 +21,6 @@ const Info = () => {
             form.setValues({jobTitle: profile.jobTitle, company: profile.company, location: profile.location});
         }else{
             setEdit(false);
-            let updatedProfile = {...profile, ...form.getValues()};
-            dispatch(changeProfile(updatedProfile));
-            successNotification("Başarılı", "Profil Güncellemesi Başarılı!");
         }
     }
 
@@ -32,12 +29,24 @@ const Info = () => {
         initialValues: {jobTitle: '',company: '', location:''}
     });
 
+    const handleSave = () => {
+        setEdit(false);
+        let updatedProfile = {...profile, ...form.getValues()};
+        dispatch(changeProfile(updatedProfile));
+        successNotification("Başarılı","Profil Güncellendi!");
+    }
+
     return <>
     <div className="text-3xl font-semibold flex justify-between">
         {user.name}
-        <ActionIcon onClick={handleClick} variant="subtle" color="brightSun.4" size="lg">
-            {edit ? <IconDeviceFloppy className="w-4/5 h-4/5" stroke={1.5} /> : <IconPencil className="w-4/5 h-4/5" stroke={1.5} />}
-        </ActionIcon>
+        <div>
+            {edit && <ActionIcon onClick={handleSave} variant="subtle" color="green.8" size="lg">
+                <IconCheck className="w-4/5 h-4/5" stroke={1.5} />
+            </ActionIcon>}
+            <ActionIcon onClick={handleClick} variant="subtle" color={edit ? "red.8" : "brightSun.4"} size="lg">
+                {edit ? <IconX className="w-4/5 h-4/5" stroke={1.5} /> : <IconPencil className="w-4/5 h-4/5" stroke={1.5} />}
+            </ActionIcon>
+        </div>
     </div>
     {
         edit ? <> <div className="flex gap-10 [&>*]:w-1/2 my-3">
@@ -56,6 +65,7 @@ const Info = () => {
         </div>
         </>
     }
+    
     </>
 }
 

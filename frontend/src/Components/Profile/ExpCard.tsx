@@ -28,7 +28,7 @@ const ExpCard = (props:any) => {
             <Button onClick={() => setEdit(true)} color="brightSun.4" variant="outline">Düzenle</Button>
             <Button color="red.8" variant="light">Sil</Button>
         </div>}
-    </div>:<ExpInput setEdit={setEdit}/>
+    </div>:<ExpInput {...props} setEdit={setEdit}/>
 }
 
 export default ExpCard;
