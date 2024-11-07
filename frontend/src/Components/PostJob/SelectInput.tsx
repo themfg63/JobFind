@@ -1,5 +1,4 @@
 import { Combobox, InputBase, ScrollArea, useCombobox } from "@mantine/core";
-import { current } from "@reduxjs/toolkit";
 import { useEffect, useState } from "react";
 
 const SelectInput = (props:any) => {

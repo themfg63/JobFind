@@ -12,7 +12,7 @@ const Jobs = () => {
         }).catch((err) => {
             console.log(err);
         })
-    })
+    },[])
 
     return <div className="p-5">
         <div className="flex justify-between">

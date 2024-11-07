@@ -1,6 +1,7 @@
 import { Divider, Text } from "@mantine/core";
 import { IconBookmark, IconClockHour3 } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
+import { timeAgo } from "../../Services/Utilities";
 
 const JobCard = (props:any) => {
     return <Link to="/jobs" className="p-4 rounded-xl bg-mine-shaft-900 hover:shadow-[0_0_5px_1px_yellow] !shadow-bright-sun-400 transition
@@ -43,7 +44,7 @@ const JobCard = (props:any) => {
             <div className="font-semibold text-mine-shaft-200">{props.packageOffered} TL</div>
             <div className="text-xs flex gap-1 items-center text-mine-shaft-400">
                 <IconClockHour3 className="h-5 w-5" stroke={1.5} />
-                {props.postedDaysAgo} Gün Önce Yayınlandı
+                {timeAgo(props.postTime)} Yayınlandı
             </div>
         </div>
     </Link>
