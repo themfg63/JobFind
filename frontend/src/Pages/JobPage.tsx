@@ -4,7 +4,7 @@ import { getJob } from "../Services/JobService";
 import { Button, Divider } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
 import RecommendedJobs from "../Components/JobDesc/RecommendedJobs";
-import Jobs from "../Components/FindJobs/Jobs";
+import JobDesc from "../Components/JobDesc/Job";
 
 const JobPage = () => {
     const {id} = useParams();
@@ -25,7 +25,7 @@ const JobPage = () => {
             <Button color="brightSun.4" leftSection={<IconArrowLeft size={20} />} variant="light">Geri Dön</Button>
         </Link>
         <div className="flex gap-5 justify-around">
-            <Jobs {...job} />
+            <JobDesc {...job} />
             <RecommendedJobs />
         </div>
     </div>

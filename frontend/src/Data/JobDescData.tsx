@@ -4,22 +4,26 @@ export const card =[
     {
         name: "Konum",
         icon: IconMapPin,
-        value: "Ankara"
+        value: "Ankara",
+        id:"location"
     },
     {
         name: "Deneyim",
         icon: IconBriefcase,
         value: "Expert",
+        id:"experience"
     },
     {
         name: "Maaş",
         icon: IconPremiumRights,
-        value: "50 TL"
+        value: "50 TL",
+        id: "packageOffered"
     },
     {
         name: "İş Tipi",
         icon: IconRecharging,
-        value: "Full Time"
+        value: "Full Time",
+        id: "jobType"
     }
 ]
 

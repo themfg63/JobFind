@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { timeAgo } from "../../Services/Utilities";
 
 const JobCard = (props:any) => {
-    return <Link to="/jobs" className="p-4 rounded-xl bg-mine-shaft-900 hover:shadow-[0_0_5px_1px_yellow] !shadow-bright-sun-400 transition
+    return <Link to={`/jobs/${props.id}`} className="p-4 rounded-xl bg-mine-shaft-900 hover:shadow-[0_0_5px_1px_yellow] !shadow-bright-sun-400 transition
     duration-300 ease-in-out w-72 flex flex-col gap-3">
         <div className="flex justify-between">
             <div className="flex gap-2 items-center">
