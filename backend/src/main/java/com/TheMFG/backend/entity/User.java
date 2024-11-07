@@ -1,6 +1,6 @@
 package com.TheMFG.backend.entity;
 
-import com.TheMFG.backend.dto.AccountType;
+import com.TheMFG.backend.dto.enums.AccountType;
 import com.TheMFG.backend.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;

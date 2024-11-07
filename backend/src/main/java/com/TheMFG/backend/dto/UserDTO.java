@@ -1,5 +1,6 @@
 package com.TheMFG.backend.dto;
 
+import com.TheMFG.backend.dto.enums.AccountType;
 import com.TheMFG.backend.entity.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
