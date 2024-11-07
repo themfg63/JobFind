@@ -12,25 +12,15 @@ import Experience from "./Experience";
 import Certificate from "./Certificate";
 import { useHover } from "@mantine/hooks";
 import { successNotification } from "../../Services/NotificationService";
-import { resolve } from "path";
-import { rejects } from "assert";
+
 
 
 
 
 const Profile = () => {
     const dispatch = useDispatch();
-    const user = useSelector((state:any) => state.user);
     const profile = useSelector((state:any) => state.profile);
     const {hovered, ref} = useHover();
-
-    useEffect(() => {
-        getProfile(user.id).then((data:any) => {
-            dispatch(setProfile(data));
-        }).catch((error:any) => {
-            console.log(error);
-        })
-    },[])
 
     const handleFileChange = async(image:any) => {
         let picture:any = await getBase64(image);
