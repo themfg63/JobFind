@@ -1,17 +1,16 @@
 import {  Avatar, Divider, FileInput,  Overlay} from "@mantine/core";
 import { IconEdit } from "@tabler/icons-react";
-import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getProfile } from "../../Services/ProfileService";
 import Info from "./Info";
-import { changeProfile, setProfile } from "../../Slices/ProfileSlice";
+import { changeProfile,} from "../../Slices/ProfileSlice";
 import About from "./About";
 import Skills from "./Skills";
 import Experience from "./Experience";
 import Certificate from "./Certificate";
 import { useHover } from "@mantine/hooks";
 import { successNotification } from "../../Services/NotificationService";
+import { getBase64 } from "../../Services/Utilities";
 
 
 
@@ -29,14 +28,7 @@ const Profile = () => {
         successNotification("Başarılı","Profil Fotoğrafı Güncellendi!");
     }
 
-    const getBase64 = (file:any) => {
-        return new Promise((resolve,rejects) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => rejects(error);
-        })
-    }
+    
     return <div className="w-4/5 mx-auto">
         <div className="">
             <div className="relative">

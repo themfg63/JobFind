@@ -24,7 +24,7 @@ const ApplyJobPage = () => {
         <Link className="my-5 inline-block" to="/jobs" >
             <Button color="brightSun.4" leftSection={<IconArrowLeft size={20} />} variant="light">Geri Dön</Button>
         </Link>
-        <ApplyJobComp />
+        <ApplyJobComp {...job}/>
     </div>
 }
 

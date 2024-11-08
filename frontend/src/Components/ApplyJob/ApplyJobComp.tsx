@@ -1,8 +1,9 @@
 import { Divider } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import ApplicationForm from "./ApplicationForm";
+import { timeAgo } from "../../Services/Utilities";
 
-const ApplyJobComp = () => {
+const ApplyJobComp = (props:any) => {
     const navigate = useNavigate();
 
     return <div className="w-2/3 m-auto">
@@ -12,8 +13,8 @@ const ApplyJobComp = () => {
                     <img className="h-14" src={`/Companies/google.png`} alt="" />
                 </div>
                 <div className="flex flex-col gap-1">
-                    <div className="font-semibold text-2xl">Backend Developer</div>
-                    <div className="text-lg text-mine-shaft-300">Google &bull; 3 gün Önce &bull; 12 Başvuru</div>
+                    <div className="font-semibold text-2xl">{props.jobTitle}</div>
+                    <div className="text-lg text-mine-shaft-300">{props.company} &bull; {timeAgo(props.postTime)} &bull; {props.applicants?props.applicants.length:0}</div>
                 </div>
             </div>
         </div>

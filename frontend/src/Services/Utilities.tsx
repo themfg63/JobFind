@@ -42,7 +42,17 @@ function timeAgo(time:string){
     }
 }
 
-export {formatDate,timeAgo};
+
+const getBase64 = (file:any) => {                       //file parametresi alan getBase64 fonksiyonu, Promise dönen bir okuma işlemi sağlar.
+    return new Promise((resolve,rejects) => {           //Promise, JavaScript'te asenkron işlemleri yönetmek için kullanılır. Bu fonksiyon, işlemin başarılı veya başarısız olmasına göre "resolve" veya "rejects" çağırır.
+        const reader = new FileReader();                //FileReader, tarayıcı tabanlı bir API olup dosyaları çeşitli formatlarda okumaya izin verir.
+        reader.readAsDataURL(file);                     //readAsDataURL, dosyayı base64 formatında okuma işlemi başlatır.
+        reader.onload = () => resolve(reader.result);   //reader.onload, okuma işlemi tamamlandığında tetiklenir. okunan veri başarılıysa resolve iletilir.
+        reader.onerror = error => rejects(error);       //reader.onerror, bir hata oluşursa tetiklenir. rejects(error) ile hata, Promise'in başarısız sonucuna iletilir.
+    })
+}
+
+export {formatDate,timeAgo,getBase64};
 
 
 
