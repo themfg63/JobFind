@@ -1,6 +1,6 @@
 package com.TheMFG.backend.entity;
 
-import com.TheMFG.backend.dto.Applicant;
+import com.TheMFG.backend.dto.ApplicantDTO;
 import com.TheMFG.backend.dto.JobDTO;
 import com.TheMFG.backend.dto.enums.JobStatus;
 import lombok.AllArgsConstructor;
@@ -32,12 +32,12 @@ public class Job {
     private List<String> skillsRequired;
     private JobStatus jobStatus;
 
-    public JobDTO toDTO(){
+    public JobDTO toDTO() {
         return new JobDTO(
                 this.id,
                 this.jobTitle,
                 this.company,
-                this.applicants,
+                this.applicants != null ? this.applicants.stream().map((x) -> x.toDTO()).toList():null,
                 this.about,
                 this.experience,
                 this.jobType,

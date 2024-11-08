@@ -1,6 +1,10 @@
 package com.TheMFG.backend.service.Impl;
 
+import com.TheMFG.backend.dto.ApplicantDTO;
 import com.TheMFG.backend.dto.JobDTO;
+import com.TheMFG.backend.dto.enums.ApplicationStatus;
+import com.TheMFG.backend.entity.Applicant;
+import com.TheMFG.backend.entity.Job;
 import com.TheMFG.backend.exception.JobPortalException;
 import com.TheMFG.backend.repository.JobRepository;
 import com.TheMFG.backend.service.Interface.JobService;
@@ -9,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,6 +36,23 @@ public class JobServiceImpl implements JobService {
     @Override
     public JobDTO getJob(Long id) throws JobPortalException {
         return jobRepository.findById(id).orElseThrow(() -> new JobPortalException("JOB_NOT_FOUND")).toDTO();
+    }
+
+    @Override
+    public void applyJob(Long id, ApplicantDTO applicantDTO) throws JobPortalException{
+        Job job = jobRepository.findById(id).orElseThrow(() -> new JobPortalException("JOB_NOT_FOUND"));
+        List<Applicant> applicants = job.getApplicants();
+
+        if(applicants == null){
+            applicants = new ArrayList<>();
+        }
+
+        if(applicants.stream().filter((x) -> x.getApplicantId() == applicantDTO.getApplicantId()).toList().size()>0) throw new JobPortalException("JOB_APPLIED_ALREADY");
+
+        applicantDTO.setApplicationStatus(ApplicationStatus.APPLIED);
+        applicants.add(applicantDTO.toEntity());
+        job.setApplicants(applicants);
+        jobRepository.save(job);
     }
 }
 

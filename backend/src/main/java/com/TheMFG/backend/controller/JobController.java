@@ -1,6 +1,8 @@
 package com.TheMFG.backend.controller;
 
+import com.TheMFG.backend.dto.ApplicantDTO;
 import com.TheMFG.backend.dto.JobDTO;
+import com.TheMFG.backend.dto.ResponseDTO;
 import com.TheMFG.backend.exception.JobPortalException;
 import com.TheMFG.backend.service.Interface.JobService;
 import jakarta.validation.Valid;
@@ -34,8 +36,13 @@ public class JobController {
 
     //ID'ye göre iş ilanını gösterir.
     @GetMapping("/get/{id}")
-
     public ResponseEntity<JobDTO> getJob(@PathVariable Long id) throws JobPortalException{
         return new ResponseEntity<>(jobService.getJob(id),HttpStatus.OK);
+    }
+
+    @PostMapping("/apply/{id}")
+    public ResponseEntity<ResponseDTO> applyJob(@PathVariable Long id, @RequestBody ApplicantDTO applicantDTO) throws JobPortalException{
+        jobService.applyJob(id,applicantDTO);
+        return new ResponseEntity<>(new ResponseDTO("Başvuru Tamamlandı!"),HttpStatus.OK);
     }
 }
