@@ -2,7 +2,7 @@ import { Button, FileInput, LoadingOverlay, NumberInput, Textarea, TextInput } f
 import { isNotEmpty, useForm } from "@mantine/form";
 import { IconPaperclip } from "@tabler/icons-react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getBase64 } from "../../Services/Utilities";
 import { applyJob } from "../../Services/JobService";
 import { errorNotification, successNotification } from "../../Services/NotificationService";
@@ -13,6 +13,7 @@ const ApplicationForm = () => {
     const [submit,setSubmit] = useState(false);
     const {id} = useParams();
     const user = useSelector((state:any) => state.user);
+    const navigate = useNavigate();
 
     const handlePreview = () => {
         form.validate();
@@ -24,14 +25,17 @@ const ApplicationForm = () => {
     const handleSubmit = async() => {
         setSubmit(true);
         let resume:any = await getBase64(form.getValues().resume);
-        let applicant = {...form.getValues(), applicantId:user.id, resume:resume.split(',')[1]};
+        let applicant = {...form.getValues(),applicantId:user.id,resume:resume.split(',')[1]};
+
         applyJob(id,applicant).then((res) => {
             setSubmit(false);
-            successNotification("Başarılı!","Başvurunuz Başarıyla Gönderildi!");
+            successNotification("Başarılı","Başvuru Başarıyla Gönderildi!");
+            navigate("/job-history")
         }).catch((err) => {
             setSubmit(false);
-            errorNotification("HATA!",err.response.data.message);
-        });
+            errorNotification("Hata!",err.response.data.errorMessage);
+        })
+
     }
 
     const form = useForm({
