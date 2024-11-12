@@ -6,21 +6,26 @@ import { Button, Divider, Text } from "@mantine/core";
 import { timeAgo } from "../../Services/Utilities";
 
 const JobCard = (props:any) => {
-    const dispatch = useDispatch();
     const profile = useSelector((state:any) => state.profile);
+    const dispatch = useDispatch();
 
     const handleSaveJob = () => {
-        let savedJobs:any = [...profile.savedJobs];
-
-        if(savedJobs?.includes(props.id)){
-            savedJobs = savedJobs?.filter((id:any) => id !== props.id);
-        }else{
+        // savedJobs'i boş bir dizi olarak başlatıyoruz
+        let savedJobs = profile.savedJobs ? [...profile.savedJobs] : [];
+        
+        if (savedJobs.includes(props.id)) {
+            // Eğer iş kaydedilmişse, kaydı kaldır
+            savedJobs = savedJobs.filter((id: any) => id !== props.id);
+        } else {
+            // Eğer iş kaydedilmemişse, listeye ekle
             savedJobs = [...savedJobs, props.id];
         }
 
-        let updatedProfile = {...profile, savedJobs:savedJobs};
+        // Güncellenmiş profile objesi
+        let updatedProfile = { ...profile, savedJobs: savedJobs };
         dispatch(changeProfile(updatedProfile));
     }
+
 
     return <div className="p-4 rounded-xl bg-mine-shaft-900 hover:shadow-[0_0_5px_1px_yellow] !shadow-bright-sun-400 transition duration-300 ease-in-out w-72 flex flex-col gap-3">
         <div className="flex justify-between">
@@ -37,7 +42,7 @@ const JobCard = (props:any) => {
                 </div>
             </div>
             {
-                profile.savedJobs?.includes(props.id)?<IconBookmarkFilled onClick={handleSaveJob} className="cursor-pointer text-bright-sun-400" stroke={1.5} /> :
+                profile.savedJobs?.includes(props.id)?<IconBookmarkFilled onClick={handleSaveJob} className="cursor-pointer text-bright-sun-400" stroke={1.5} />:
                 <IconBookmark onClick={handleSaveJob} className="cursor-pointer hover:text-bright-sun-400 text-mine-shaft-300" stroke={1.5} />
             }
         </div>
@@ -59,7 +64,7 @@ const JobCard = (props:any) => {
             </div>
         </div>
         <Link to={`/jobs/${props.id}`}>
-            <Button fullWidth color="brightSun.4" variant="outline">Görüntüle</Button>
+            <Button fullWidth color="brightSun.4" variant="outline">Detaylı İncele</Button>
         </Link>
     </div>
 }

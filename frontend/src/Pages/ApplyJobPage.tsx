@@ -1,14 +1,14 @@
-import { Button, Divider } from "@mantine/core"
-import { IconArrowLeft } from "@tabler/icons-react"
-import { Link, useNavigate, useParams } from "react-router-dom"
-import ApplyJobComp from "../Components/ApplyJob/ApplyJobComp"
-import { useEffect, useState } from "react"
-import { getJob } from "../Services/JobService"
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom"
+import { getJob } from "../Services/JobService";
+import { Button, Divider } from "@mantine/core";
+import { IconArrowLeft } from "@tabler/icons-react";
+import ApplyJobComp from "../Components/ApplyJob/ApplyJobComp";
 
 const ApplyJobPage = () => {
+    const navigate = useNavigate();
     const {id} = useParams();
     const [job,setJob] = useState<any>(null);
-    const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo(0,0);
@@ -21,10 +21,8 @@ const ApplyJobPage = () => {
 
     return <div className="min-h-[90vh] bg-mine-shaft-950 font-['poppins'] p-4">
         <Divider size="xs" />
-        <Link className="my-5 inline-block" to="/jobs" >
-            <Button color="brightSun.4" leftSection={<IconArrowLeft size={20} />} variant="light">Geri Dön</Button>
-        </Link>
-        <ApplyJobComp {...job}/>
+        <Button my="md" color="brightSun.4" onClick={() => navigate(-1)} leftSection={<IconArrowLeft size={20}/>} variant="light">Geri Dön</Button>
+        <ApplyJobComp {...job} />
     </div>
 }
 

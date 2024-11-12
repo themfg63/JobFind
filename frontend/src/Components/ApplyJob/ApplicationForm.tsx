@@ -59,8 +59,13 @@ const ApplicationForm = () => {
     });
 
     return <div>
-        <LoadingOverlay className="[&>span]:!fixed [&>span]:top-1/2" visible={submit} zIndex={1000} 
-            overlayProps={{radius: "sm",blur: 2}} loaderProps={{color: 'brightSun.4', type: 'bars'}} />
+        <LoadingOverlay 
+            className="[&>span]:!fixed [&>span]:top-1/2" 
+            visible={submit} 
+            zIndex={1000} 
+            overlayProps={{radius: "sm",blur: 2}} 
+            loaderProps={{color: 'brightSun.4', type: 'bars'}} 
+        />
         <div className="text-xl font-semibold mb-5">Başvurunu Tamamla</div>
         <div className="flex flex-col gap-5">
             <div className="flex gap-10 [&>*]:w-1/2">
