@@ -25,7 +25,18 @@ public class ProfileDTO {
     private List<Long> savedJobs;
 
     public Profile toEntity(){
-        return new Profile(this.id,this.email,this.jobTitle,this.company,this.location,this.about,this.picture!=null? Base64.getDecoder().decode(this.picture):null,
-                this.skills,this.experiences,this.certifications,this.savedJobs);
+        return new Profile(
+                this.id,
+                this.email,
+                this.jobTitle,
+                this.company,
+                this.location,
+                this.about,
+                this.picture != null ? Base64.getDecoder().decode(this.picture):null,
+                this.skills,
+                this.experiences,
+                this.certifications,
+                this.savedJobs
+        );
     }
 }
