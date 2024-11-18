@@ -1,6 +1,7 @@
 package com.TheMFG.backend.controller;
 
 import com.TheMFG.backend.dto.ApplicantDTO;
+import com.TheMFG.backend.dto.Application;
 import com.TheMFG.backend.dto.JobDTO;
 import com.TheMFG.backend.dto.ResponseDTO;
 import com.TheMFG.backend.exception.JobPortalException;
@@ -44,5 +45,16 @@ public class JobController {
     public ResponseEntity<ResponseDTO> applyJob(@PathVariable Long id, @RequestBody ApplicantDTO applicantDTO) throws JobPortalException{
         jobService.applyJob(id,applicantDTO);
         return new ResponseEntity<>(new ResponseDTO("Başvuru Tamamlandı!"),HttpStatus.OK);
+    }
+
+    @GetMapping("/postedBy/{id}")
+    public ResponseEntity<List<JobDTO>> getJobsPostedBy(@PathVariable Long id) throws JobPortalException {
+        return new ResponseEntity<>(jobService.getJobsPostedBy(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/changeAppStatus")
+    public ResponseEntity<ResponseDTO> changeAppStatus(@RequestBody Application application) throws JobPortalException{
+        jobService.changeAppStatus(application);
+        return new ResponseEntity<>(new ResponseDTO("Başvuru Durumu Değiştirildi!"),HttpStatus.OK);
     }
 }
