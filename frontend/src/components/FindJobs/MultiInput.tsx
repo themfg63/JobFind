@@ -1,6 +1,5 @@
 import { Checkbox, Combobox, Group, Input, Pill, PillsInput, useCombobox } from "@mantine/core"
 import { useEffect, useState } from "react";
-import { CgSearchFound } from "react-icons/cg";
 
 const MultiInput = (props:any) => {
     useEffect(() => {
@@ -38,7 +37,7 @@ const MultiInput = (props:any) => {
             </Pill>
     ));
 
-    const options = data.filter((item) => item.toLowerCase().includes(search.trim().toLowerCase())).map((item) => {
+    const options = data.map((item) => (
         <Combobox.Option value={item} key={item} active={value.includes(item)}>
             <Group gap="sm">
                 <Checkbox size='xs' color="brightSun.4"
@@ -48,10 +47,10 @@ const MultiInput = (props:any) => {
                     tabIndex={-1}
                     style={{pointerEvents: 'none'}}
                 />
-                <span className="text-mine-shaft-300">{item}</span>
+                <span>{item}</span>
             </Group>
         </Combobox.Option>
-    });
+    ))
 
     return(
         <Combobox store={combobox} onOptionSubmit={handleValueSelect} withinPortal={false}>
@@ -90,6 +89,18 @@ const MultiInput = (props:any) => {
                     }}
                     placeholder="Ara"
                 />
+
+                <Combobox.Options>
+                    {options}
+
+                    {!exactOptionMatch && search.trim().length > 0 && (
+                        <Combobox.Option value="$create">+ Ekle {search}</Combobox.Option>
+                    )}
+
+                    {exactOptionMatch && search.trim().length > 0 && options.length === 0 && (
+                        <Combobox.Empty>Bulunamadı</Combobox.Empty>
+                    )}
+                </Combobox.Options>
             </Combobox.Dropdown>
         </Combobox>
     )
