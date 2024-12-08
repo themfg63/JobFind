@@ -49,5 +49,51 @@ export const jobList = [
         package: "95",
         postedDaysAgo: 10,
         description: "Netflix is seeking a UX Designer to join our team. You'll be working on designing user-centric interfaces for our."
+    },
+    {
+        jobTitle: "Web Developer",
+        company: "Microsoft",
+        applicants: 98,
+        experience: "Middle",
+        jobType: "Full Time",
+        location: "İzmir",
+        package: "80",
+        postedDaysAgo: 5,
+        description: "Microsoft is seeking a Web developer to join our team. You'll be working on designing user-centric interfaces for our."
+    },
+    {
+        jobTitle: "Product Manager",
+        company: "Spotify",
+        applicants: 11,
+        experience: "Senior",
+        jobType: "Full Time",
+        location: "İstanbul",
+        package: "75",
+        postedDaysAgo: 3,
+        description: "Spotify is seeking a Product Manager to join our team. You'll be working on designing user-centric interfaces for our."
+    },
+    {
+        jobTitle: "Product Designer",
+        company: "Meta",
+        applicants: 25,
+        experience: "Junior",
+        jobType: "Full Time",
+        location: "İstanbul",
+        package: "58",
+        postedDaysAgo: 12,
+        description: "Meta is seeking a Product Designer to join our team. You'll be working on designing user-centric interfaces for our blockchain" +
+        " wallet platform."
+    },
+    {
+        jobTitle: "Product Designer",
+        company: "Meta",
+        applicants: 25,
+        experience: "Junior",
+        jobType: "Full Time",
+        location: "İstanbul",
+        package: "58",
+        postedDaysAgo: 12,
+        description: "Meta is seeking a Product Designer to join our team. You'll be working on designing user-centric interfaces for our blockchain" +
+        " wallet platform."
     }
 ]
