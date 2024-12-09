@@ -98,5 +98,51 @@ export const talents = [
         location: "Ankara, Türkiye",
         image: "Avatar"
     }
-    
 ]
+
+export const profile = {
+    name: "Muhammed Furkan GÜNEŞ",
+    role: "Software Engineer",
+    company: "Google",
+    location: "Ankara, Türkiye",
+    about: "I am a graduate of İskenderun Technical University with a degree in Computer Engineering. I am looking for a job as a backend developer with Java and .Net. I completed my training TEDAS",
+    skills: ["React","Java","MongoDB","SpringBoot","MySQL","Postman","Swagger"],
+    experience: [
+        {
+            title: "Software Engineer III",
+            company: "Google",
+            location: "Ankara, Türkiye",
+            startDate: "Haziran 2024",
+            endDate: "Şimdi",
+            description: "Middle Java Backend Developer"
+        },
+        {
+            title: "Junior Java Developer",
+            company: "Microsoft",
+            location: "İstanbul, Türkiye",
+            startDate: "Ocak 2023",
+            endDate: "Mayıs 2024",
+            description: "Junior Java Backend Developer"
+        }
+    ],
+    certifications: [
+        {
+            name: "Google Professional Cloud Architect",
+            issuer: "Google",
+            issueDate: "Ağustos 2024",
+            certificateId: "CB7594SDA"
+        },
+        {
+            name: "Microsoft Spring Boot Course",
+            issuer: "Microsoft",
+            issueDate: "Ocak 2024",
+            certificateId: "SAD65498"
+        },
+        {
+            name: "Meta Microservice Course",
+            issuer: "Meta",
+            issueDate: "Aralık 2023",
+            certificateId: "MT56498A"
+        }
+    ]
+} 

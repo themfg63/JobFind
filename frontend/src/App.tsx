@@ -8,6 +8,7 @@ import FindJobs from './pages/FindJobs';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import FindTalentPage from './pages/FindTalentPage';
+import TalentProfilePage from './pages/TalentProfilePage';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path='/find-jobs' element={<FindJobs />} />
           <Route path='/find-talent' element={<FindTalentPage />} />
+          <Route path='/talent-profile' element={<TalentProfilePage />} />
           <Route path='*' element={<HomePage />} /> 
         </Routes>
         <Footer />
