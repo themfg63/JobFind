@@ -13,6 +13,7 @@ import PostJobPage from './pages/PostJobPage';
 import FindJobsPage from './pages/FindJobsPage';
 import JobDescPage from './pages/JobDescPage';
 import ApplyJobPage from './pages/ApplyJobPage';
+import CompanyPage from './pages/CompanyPage';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path='/apply-job' element={<ApplyJobPage />} />
           <Route path='/post-job' element={<PostJobPage />} />
           <Route path='/talent-profile' element={<TalentProfilePage />} />
+          <Route path='/company' element={<CompanyPage/>} /> 
           <Route path='*' element={<HomePage />} /> 
         </Routes>
         <Footer />
