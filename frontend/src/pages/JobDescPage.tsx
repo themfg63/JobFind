@@ -1,8 +1,8 @@
 import { Button } from "@mantine/core"
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import JobDesc from "../components/JobDesc/JobDesc";
 import RecommendedJobs from "../components/JobDesc/RecommendedJob";
+import Job from "../components/JobDesc/Job";
 
 const JobDescPage = () => {
     return(
@@ -11,7 +11,7 @@ const JobDescPage = () => {
                 <Button color="brightSun.4" leftSection={<FaArrowLeft size={20} />} variant="light">Geri Dön</Button>
             </Link>
             <div className="flex gap-5 justify-around">
-                <JobDesc />
+                <Job />
                 <RecommendedJobs />
             </div>
         </div>
