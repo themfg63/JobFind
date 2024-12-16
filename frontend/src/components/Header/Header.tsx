@@ -1,9 +1,10 @@
-import { Avatar, Indicator } from "@mantine/core";
+import {  Indicator } from "@mantine/core";
 import { CgSearchFound } from "react-icons/cg";
 import { FaBell } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
 import NavLinks from "./NavLinks";
 import { useLocation } from "react-router-dom";
+import ProfileMenu from "./ProfileMenu";
 
 const Header = () => {
     const location = useLocation();
@@ -15,10 +16,7 @@ const Header = () => {
         </div>
         {NavLinks()}
         <div className="flex gap-3 items-center">
-            <div className="flex items-center gap-2">
-                <div>Muhammed Furkan</div>
-                <Avatar src="/photos/avatar.png" alt="its me"/>
-            </div>
+            <ProfileMenu />
             <div className="bg-mine-shaft-900 p-1.5 rounded-full">
                 <IoSettingsOutline />
             </div>

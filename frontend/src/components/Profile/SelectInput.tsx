@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 const SelectInput = (props:any) => {
     useEffect(() => {
         setData(props.options);
+        setValue(props.value);
+        setSearch(props.value);
     },[])
 
     const combobox = useCombobox({
@@ -40,9 +42,9 @@ const SelectInput = (props:any) => {
         >
             <Combobox.Target>
                 <InputBase
+                    className="[&_input]:font-medium"
                     withAsterisk
                     label={props.label}
-                    leftSection={<props.leftSection stroke="1.5"/>}
                     rightSection={<Combobox.Chevron />}
                     value={search}
                     onChange={(event) => {

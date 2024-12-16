@@ -18,6 +18,7 @@ import CompanyPage from './pages/CompanyPage';
 import PostedJobPage from './pages/PostedJobPage';
 import JobHistoryPage from './pages/JobHistoryPage';
 import SignUpPage from './pages/SignUpPage';
+import ProfilePage from './pages/ProfilePage';
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
           <Route path='/job-history' element={<JobHistoryPage />} />
           <Route path='/signup' element={<SignUpPage />} />
           <Route path='/login' element={<SignUpPage />} />
+          <Route path='/profile' element={<ProfilePage />} />
           <Route path='*' element={<HomePage />} /> 
         </Routes>
         <Footer />
