@@ -3,9 +3,12 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { footerLinks } from "../../data/Data";
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
-    return <div className="pt-20 pb-5 flex gap-5 justify-around bg-mine-shaft-950 font-['poppins']">
+    const location = useLocation();
+
+    return  location.pathname !== "/signup" && location.pathname !== "/login"?<div className="pt-20 pb-5 flex gap-5 justify-around bg-mine-shaft-950 font-['poppins']">
         <div className="w-1/4 flex flex-col gap-4">
             <div className="flex gap-1 items-center text-bright-sun-400">
                 <CgSearchFound className="h-10 w-10" />
@@ -25,7 +28,7 @@ const Footer = () => {
                     item.link.map((links,index) => <div key={index} className="text-mine-shaft-300 text-sm hover:text-bright-sun-400 cursor-pointer mb-1 hover:translate-x-2 transition duration-300 ease-in-out">{links}</div>)
                 }</div>)
         }
-    </div>
+    </div>:<></>
 }
 
 export default Footer;

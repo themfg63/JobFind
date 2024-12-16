@@ -3,9 +3,12 @@ import { CgSearchFound } from "react-icons/cg";
 import { FaBell } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
 import NavLinks from "./NavLinks";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
-    return <div className="w-full bg-mine-shaft-950 px-6 text-white h-20 flex justify-between items-center font-['poppins']">
+    const location = useLocation();
+
+    return location.pathname!=="/signup" && location.pathname !== "/login"?<div className="w-full bg-mine-shaft-950 px-6 text-white h-20 flex justify-between items-center font-['poppins']">
         <div className="flex gap-1 items-center text-bright-sun-400">
             <CgSearchFound className="h-10 w-10" />
             <div className="text-3xl font-semibold">JobFind</div>
@@ -25,6 +28,6 @@ const Header = () => {
                 </Indicator>
             </div>
         </div>
-    </div>
+    </div>:<></>
 }
 export default Header;
