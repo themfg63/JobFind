@@ -4,17 +4,22 @@ import { FaPencil } from "react-icons/fa6";
 import { TbDeviceFloppy } from "react-icons/tb";
 import fields from "../../data/Profile";
 import SelectInput from "./SelectInput";
-import { FaBriefcase } from "react-icons/fa";
-    import { RiMapPin2Line } from "react-icons/ri";
+import { FaBriefcase, FaPlus } from "react-icons/fa";
+import { RiMapPin2Line } from "react-icons/ri";
 import ExpCard from "./ExpCard";
 import { profile } from "../../data/TalentData";
+import ExpInput from "./ExpInput";
+import CertiCard from "./CertiCard";
+import CertiInput from "./CertiInput";
 
 const Profile = () => {
     const select = fields;
     const [skills,setSkills] = useState(["React","Java","MongoDB"]);
     const [edit,setEdit] = useState([false,false,false,false,false]);
     const [about,setAbout] = useState('I am a graduate of İskenderun Technical University with a degree in Computer Engineering. I am looking for a job as a backend developer with Java and .Net. I completed my training TEDAS');
-
+    const [addExp,setAddExp] = useState(false);
+    const [addCerti,setAddCerti] = useState(false);
+    
     const handleEdit = (index:any) => {
         const newEdit = [...edit];
         newEdit[index] =! newEdit[index];
@@ -90,15 +95,45 @@ const Profile = () => {
                 <div>
                     <div className="text-2xl font-semibold mb-4 flex justify-between">
                         Deneyimlerim
-                        <ActionIcon onClick={() => handleEdit(3)} size="lg" color="brightSun.4" variant="subtle">
-                            {
-                                edit[3] ? <TbDeviceFloppy className="h-4/5 w-4/5" /> : <FaPencil className="h-4/5 w-4/5" />
-                            }
-                        </ActionIcon>
+                        <div className="flex gap-2">
+                            <ActionIcon onClick={() => setAddExp(true)} size="lg" color="brightSun.4" variant="subtle">
+                                <FaPlus className="h-4/5 w-4/5" />
+                            </ActionIcon>
+                            <ActionIcon onClick={() => handleEdit(3)} size="lg" color="brightSun.4" variant="subtle">
+                                {
+                                    edit[3] ? <TbDeviceFloppy className="h-4/5 w-4/5" /> : <FaPencil className="h-4/5 w-4/5" />
+                                }
+                            </ActionIcon>
+                        </div>
                     </div>
                     <div className="flex flex-col gap-8">
                         {
                             profile.experience.map((exp,index) => <ExpCard key={index} {...exp} edit={edit[3]} />)
+                        }
+                        {
+                            addExp&&<ExpInput add setEdit={setAddExp} />
+                        }
+                    </div>
+                </div>
+                <Divider my="xl" />
+                <div>
+                    <div className="text-2xl font-semibold mb-4 flex justify-between">
+                        Sertifikalarım
+                        <div className="flex gap-2">
+                            <ActionIcon onClick={() => setAddCerti(true)} size="lg" color="brightSun.4" variant="subtle">
+                                <FaPlus className="h-4/5 w-4/5" />
+                            </ActionIcon>
+                            <ActionIcon onClick={() => handleEdit(4)} size="lg" color="brightSun.4" variant="subtle">
+                                {edit[4]?<TbDeviceFloppy className="h-4/5 w-4/5" /> : <FaPencil className="h-4/5 w-4/5" />}
+                            </ActionIcon>
+                        </div>
+                    </div>
+                    <div className="flex flex-col gap-8">
+                        {
+                            profile.certifications.map((certi,index) => <CertiCard key={index} edit={edit[4]} {...certi} />)
+                        }
+                        {
+                            addCerti && <CertiInput setEdit={setAddCerti} />
                         }
                     </div>
                 </div>
