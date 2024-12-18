@@ -1,5 +1,6 @@
 package com.TheMFG.backend.controller;
 
+import com.TheMFG.backend.dto.LoginDTO;
 import com.TheMFG.backend.dto.UserDTO;
 import com.TheMFG.backend.exception.JobPortalException;
 import com.TheMFG.backend.service.IUserService;
@@ -23,5 +24,11 @@ public class UserController {
     public ResponseEntity<UserDTO> registerUser(@RequestBody @Valid UserDTO userDTO) throws JobPortalException {
         userDTO = userService.registerUser(userDTO);
         return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
+    }
+
+    // Kullanıcı giriş API
+    @PostMapping("/login")
+    public ResponseEntity<UserDTO> loginUser(@RequestBody @Valid LoginDTO loginDTO) throws JobPortalException{
+        return new ResponseEntity<>(userService.loginUser(loginDTO),HttpStatus.OK);
     }
 }
