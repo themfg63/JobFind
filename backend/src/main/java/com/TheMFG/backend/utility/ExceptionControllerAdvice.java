@@ -1,7 +1,10 @@
 package com.TheMFG.backend.utility;
 
+import com.TheMFG.backend.exception.JobPortalException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
@@ -13,6 +16,13 @@ import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 /*
+   Bu sınıf, Spring Boot uygulamasında global hata yönetimi sağlar.
+   Merkezi bir noktada istisnaları yakalayıp özelleştirilmiş ve kullanıcı dostu bir hata mesajı döner.
+   Bu, hata yönetimini kolaylaştırır ve uygulamanın güvenliğini artırır.
+    */
+
+
+/*
      Bu anotasyon, uygulama genelinde çalışacak bir "global exception handler" tanımlar.
      * Tüm controller sınıflarını etkiler.
      * Controller sınıflarında gerçekleşen hatalar bu sınıfta ele alınır.
@@ -20,12 +30,8 @@ import java.util.stream.Collectors;
  */
 @RestControllerAdvice
 public class ExceptionControllerAdvice {
-    /*
-    Bu sınıf, Spring Boot uygulamasında global hata yönetimi sağlar.
-    Merkezi bir noktada istisnaları yakalayıp özelleştirilmiş ve kullanıcı dostu bir hata mesajı döner.
-    Bu, hata yönetimini kolaylaştırır ve uygulamanın güvenliğini artırır.
-     */
-
+    @Autowired
+    private Environment environment;
 
     @ExceptionHandler(Exception.class) // Bu yöntem, belirli bir istisna türünü (burada Exception) yakalamak için kullanılır.
     public ResponseEntity<ErrorInfo> generalException(Exception exception){
@@ -57,5 +63,12 @@ public class ExceptionControllerAdvice {
         }
         ErrorInfo error = new ErrorInfo(msg, HttpStatus.BAD_REQUEST.value(), LocalDateTime.now());
         return new ResponseEntity<>(error,HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(JobPortalException.class)
+    public ResponseEntity<ErrorInfo> generalException(JobPortalException exception){
+        String msg = environment.getProperty(exception.getMessage());
+        ErrorInfo error = new ErrorInfo(msg,HttpStatus.INTERNAL_SERVER_ERROR.value(),LocalDateTime.now());
+        return new ResponseEntity<>(error,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
