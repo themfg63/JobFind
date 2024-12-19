@@ -1,9 +1,12 @@
 import { Anchor, Button, Checkbox, Group, PasswordInput, Radio, rem, TextInput } from "@mantine/core";
 import { useState } from "react";
 import { CiAt } from "react-icons/ci";
-import { FaLock } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaCheck, FaLock } from "react-icons/fa";
+import {  useNavigate } from "react-router-dom";
 import { registerUser } from "../../services/UserService";
+import { signupValidation } from "../../services/FormValidation";
+import { notifications } from "@mantine/notifications";
+import { FaX } from "react-icons/fa6";
 
 const form = {
     name: "",
@@ -14,20 +17,71 @@ const form = {
 }
 
 const SignUp = () => {
-    const [data,setData] = useState(form);
+    const [data,setData] = useState<{[key:string]:string}>(form);
+    const [formError,setFormError] = useState<{[key:string]:string}>(form);
+    const navigate = useNavigate();
 
     const handleChange = (event:any) => {
         if(typeof(event) === "string"){
             setData({...data, accountType:event});
-        }else{
-            setData({...data,[event.target.name]:event.target.value})
+            return;
+        }
+        let name = event.target.name, value = event.target.value;
+        setData({...data, [name]:value});
+        setFormError({...formError, [name]:signupValidation(name,value)})
+        if(name === "password" && data.confirmPassword !== ""){
+            let err = "";
+            if(data.confirmPassword !== value){
+                err = "Şifreler Uyuşmuyor!";
+            }
+            setFormError({...formError, [name]:signupValidation(name,value) , confirmPassword: err});
+        }
+        if(name === "confirmPassword"){
+            if(data.password !== value){
+                setFormError({...formError, [name]:"Şifreler Uyuşmuyor!"});
+            }else{
+                setFormError({...formError, confirmPassword: ""});
+            }
         }
     }
 
     const handleSubmit = () => {
-        registerUser(data).then((res) => {
-            console.log(res);
-        }).catch((err) => console.log(err));
+        let valid = true, newFormError:{[key:string]:string}={};
+        for(let key in data){
+            if(key === "accountType")continue;
+            if(key !== "confirmPassword")newFormError[key] = signupValidation(key,data[key]);
+            else if(data[key] !== data["password"])newFormError[key] = "Şifreler Uyuşmuyor!";
+            if(newFormError[key])valid=false;
+        }
+        setFormError(newFormError);
+        if(valid === true){
+            registerUser(data).then((res) => {
+                console.log(res);
+                setData(form);
+                notifications.show({
+                    title: "Kayıt Başarılı",
+                    message:"Giriş Sayfasına Yönlendiriliyorsunuz...",
+                    withCloseButton: true,
+                    icon: <FaCheck style={{width: "90%",height: "90%"}} />,
+                    color: "teal",
+                    withBorder: true,
+                    className: "!border-green-500"
+                })
+                setTimeout(() => {
+                    navigate("/login");
+                },4000);
+            }).catch((err) => {
+                console.log(err);
+                notifications.show({
+                    title: "Beklenmedik Bir Hata Oluştu!",
+                    message: err.response.data.errorMessage,
+                    withCloseButton: true,
+                    icon: <FaX style={{width:"90%",height:"90%", color: 'red'}} />,
+                    withBorder: true,
+                    className:"!border-red-500"
+                })
+            });
+        }
     }
 
     return <div className="w-1/2 px-20 flex flex-col justify-center gap-3">
@@ -39,6 +93,7 @@ const SignUp = () => {
             placeholder="Ad Soyad Girin"
             value={data.name}
             onChange={handleChange}
+            error={formError.name}
         />
         <TextInput
             name="email"
@@ -48,6 +103,7 @@ const SignUp = () => {
             placeholder="Email Adresinizi Girin"
             value={data.email}
             onChange={handleChange}
+            error={formError.email}
         />
         <PasswordInput
             name="password"
@@ -57,6 +113,7 @@ const SignUp = () => {
             placeholder="Şifrenizi Girin"
             value={data.password}
             onChange={handleChange}
+            error={formError.password}
         />
         <PasswordInput
             name="confirmPassword"
@@ -66,6 +123,7 @@ const SignUp = () => {
             placeholder="Şifrenizi Tekrar Girin"
             value={data.confirmPassword}
             onChange={handleChange}
+            error={formError.confirmPassword}
         />
         <Radio.Group
             value={data.accountType}
@@ -80,7 +138,12 @@ const SignUp = () => {
         </Radio.Group>
         <Checkbox autoContrast label={<><Anchor>Koşul ve Şartları</Anchor> Kabul Ediyorum.</>} />
         <Button onClick={handleSubmit} autoContrast variant="filled">Kayıt Ol</Button>
-        <div className="mx-auto">Bir Hesabınız Var Mı? <Link to="/login" className="text-bright-sun-400 hover:underline">Giriş Yap</Link> </div>
+        <div className="text-center">
+            Hesabınız Var Mı? 
+            <span className="text-bright-sun-400 hover:underline cursor-pointer" onClick={() => {navigate("/login");setFormError(form);setData(form)}}>
+                 Giriş Yap
+            </span>
+        </div>
     </div>
 }
 
