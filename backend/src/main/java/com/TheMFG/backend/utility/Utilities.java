@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
+
+import java.security.SecureRandom;
 /*
 Bu sınıf, MongoDB ile çalışarak otomatik artan bir sıra numarası (sequence) oluşturmak için kullanılır.
 Özellikle, MongoDB'de ilişkisel veritabanlarında olduğu gibi otomatik artan bir ID özelliği olmadığından,
@@ -24,6 +26,7 @@ public class Utilities {
         Utilities.mongoOperation=mongoOperation;
     }
 
+    // Oluşturulan kullanıcıların veritabanında sayısını tutmak için her kayıt eklendiğinde bir artan method
     public static Long getNextSequence(String key) throws JobPortalException {
         Query query = new Query(Criteria.where("_id").is(key)); //Query: MongoDB’de bir sorgu oluşturur
         Update update = new Update();   // Update: MongoDB’de dokümanları güncellemek için kullanılır.
@@ -35,5 +38,15 @@ public class Utilities {
             throw new JobPortalException("Kullanıcı Sayısı Arttırılamadı! Yeni Kullanıcı Alınamadı! : " + key);
         }
         return seq.getSeq();
+    }
+
+    // mail gönderimi için 6 haneli random doğrulama kodu üreten method
+    public static String generateMail(){
+        StringBuilder otp = new StringBuilder();
+        SecureRandom random = new SecureRandom();
+        for(int i=0;i<6;i++){
+            otp.append(random.nextInt(10));
+        }
+        return otp.toString();
     }
 }

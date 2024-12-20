@@ -10,4 +10,11 @@ public interface IUserService {
 
     // User login işlemi
     public UserDTO loginUser(LoginDTO loginDTO) throws JobPortalException;
+
+    //Mail gönderme işlemi
+    public Boolean sendMail(String email) throws Exception;
+
+    //Mail ile gönderilen kodu doğrulama işlemi
+    public Boolean verifyMail(String email,String otp) throws JobPortalException;
+
 }

@@ -2,15 +2,22 @@ package com.TheMFG.backend.service.Impl;
 
 import com.TheMFG.backend.dto.LoginDTO;
 import com.TheMFG.backend.dto.UserDTO;
+import com.TheMFG.backend.entity.Otp;
 import com.TheMFG.backend.entity.User;
 import com.TheMFG.backend.exception.JobPortalException;
+import com.TheMFG.backend.repository.OtpRepository;
 import com.TheMFG.backend.repository.UserRepository;
 import com.TheMFG.backend.service.IUserService;
+import com.TheMFG.backend.utility.Data;
 import com.TheMFG.backend.utility.Utilities;
+import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service(value = "userService")
@@ -20,6 +27,12 @@ public class UserService implements IUserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+    @Autowired
+    private OtpRepository otpRepository;
 
     @Override
     public UserDTO registerUser(UserDTO userDTO) throws JobPortalException {
@@ -41,5 +54,29 @@ public class UserService implements IUserService {
             throw new JobPortalException("INVALID_CREDENTIALS");
         }
         return user.toDTO();
+    }
+
+    @Override
+    public Boolean sendMail(String email) throws Exception{
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new JobPortalException("USER_NOT_FOUND"));
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
+        mimeMessageHelper.setTo(email);
+        mimeMessageHelper.setSubject("Doğrulama Kodu");
+        String genOtp = Utilities.generateMail();
+        Otp otp = new Otp(email,genOtp, LocalDateTime.now());
+        otpRepository.save(otp);
+        mimeMessageHelper.setText(Data.getMessageBody(genOtp, user.getName()),true);
+        javaMailSender.send(mimeMessage);
+        return true;
+    }
+
+    @Override
+    public Boolean verifyMail(String email,String otp) throws JobPortalException{
+        Otp otpEntity = otpRepository.findById(email).orElseThrow(() -> new JobPortalException("OTP_NOT_FOUND"));
+        if(!otpEntity.getOtpCode().equals(otp)){
+            throw new JobPortalException("OTP_INCORRECT");
+        }
+        return true;
     }
 }
