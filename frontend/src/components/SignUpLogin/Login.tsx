@@ -1,94 +1,98 @@
-import { Button, PasswordInput, rem, TextInput } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
-import { CiAt } from "react-icons/ci";
-import { FaCheck, FaLock } from "react-icons/fa";
-import {  useNavigate } from "react-router-dom";
-import { loginUser } from "../../services/UserService";
+import { useNavigate } from "react-router-dom";
 import { loginValidation } from "../../services/FormValidation";
+import { loginUser } from "../../services/UserService";
 import { notifications } from "@mantine/notifications";
+import { FaAt, FaCheck, FaLock } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
-
-const form = {
-    email: "",
-    password: ""
-}
+import { Button, PasswordInput, TextInput } from "@mantine/core";
+import ResetPassword from "./ResetPassword";
 
 const Login = () => {
-    const [data,setData] = useState<{[key:string]:string}>(form);
-    const [formError,setFormError] = useState<{[key:string]:string}>(form);
+    const form = {
+        email: "",
+        password: "",
+    }
+
+    const [data,setData] = useState<{[key: string]: string}>(form);
+    const [formError,setFormError] = useState<{[key: string]: string}>(form);
+    const [opened, {open, close}] = useDisclosure(false);
     const navigate = useNavigate();
 
     const handleChange = (event:any) => {
-        setFormError({...formError, [event.target.name]:""});
+        setFormError(form);
         setData({...data, [event.target.name]:event.target.value});
     }
 
     const handleSubmit = () => {
-        let valid = true, newFormError:{[key:string]:string} = {};
+        let valid = true, newFormError: {[key: string]: string} = {};
+
         for(let key in data){
-            newFormError[key] = loginValidation(key, data[key]);
-            if(newFormError[key])valid=false;
+            newFormError[key] = loginValidation(key,data[key]);
+            if(newFormError[key]){
+                valid = false;
+            }
         }
+
         setFormError(newFormError);
+
         if(valid){
             loginUser(data).then((res) => {
-                console.log(res);
                 notifications.show({
-                    title: "Giriş Başarılı!",
-                    message: "Ana Sayfaya Yönlendiriliyorsunuz...",
-                    withCloseButton: true,
-                    icon: <FaCheck style={{width:"90%",height:"90%"}} />,
-                    color:"teal",
+                    title: 'Giriş Başarılı',
+                    message: 'Giriş Yapılıyor...',
+                    icon: <FaCheck style={{width: "90%", height: "90%"}} />,
+                    color: 'teal',
                     withBorder: true,
-                    className: "!border-green-500"
+                    withCloseButton: true,
+                    className: "!border-green-500",
                 })
                 setTimeout(() => {
-                    navigate("/")
-                }, 4000);
+                    navigate("/");
+                },3000)
             }).catch((err) => {
-                console.log(err);
                 notifications.show({
-                    title: "Giriş Yaparken Hata",
+                    title: 'Giriş Yaparken Hata Oluştu!',
                     message: err.response.data.errorMessage,
-                    withCloseButton: true,
-                    icon: <FaX style={{width:"90%",height:"90%"}} />,
-                    color: "red",
+                    icon: <FaX style={{width: "90%", height: "90%"}}/>,
+                    color: 'red',
                     withBorder: true,
-                    className: "!border-red-500"
+                    withCloseButton: true,
+                    className: "!border-red-500",
                 })
-            })
+            });
         }
     }
 
-    return <div className="w-1/2 px-20 flex flex-col justify-center gap-3">
+    return <> <div className="w-1/2 px-20 flex flex-col gap-3 justify-center">
         <div className="text-2xl font-semibold">Giriş Yap</div>
         <TextInput
-            name="email"
             value={data.email}
-            onChange={handleChange}
-            withAsterisk
-            leftSection={<CiAt style={{width: rem(16), height: rem(16)}} />}
-            label="Email"
-            placeholder="Email Adresinizi Girin"
+            name="email"
             error={formError.email}
+            onChange={handleChange}
+            leftSection={<FaAt size={16} />}
+            label="Email"
+            withAsterisk
+            placeholder="Email Adresinizi Giriniz"
         />
         <PasswordInput
-            name="password"
             value={data.password}
+            error={formError.password}
+            name="password"
             onChange={handleChange}
-            withAsterisk
-            leftSection={<FaLock style={{width: rem(18), height: rem(18)}} />}
+            leftSection={<FaLock size={16} />}
             label="Şifre"
+            withAsterisk
             placeholder="Şifrenizi Girin"
         />
         <Button onClick={handleSubmit} autoContrast variant="filled">Giriş Yap</Button>
-        <div className="text-center">
-            Bir Hesabınız Yok Mu? 
-            <span className="text-bright-sun-400 hover:underline cursor-pointer" onClick={() => {navigate("/signup"); setFormError(form); setData(form)}}>
-                Kayıt Ol
-            </span>
-        </div>
+        <div className="text-center">Bir hesabınız yok mu ? <span className="text-bright-sun-400 cursor-pointer hover:underline" onClick={() => {setData(form); navigate("/signup")}}>Kayıt Ol</span></div>
+        <div onClick={open} className="text-bright-sun-400 hover:underline cursor-pointer text-center">Şifremi Unuttum</div>
     </div>
+    <ResetPassword opened={opened} close={close} />
+    </>
 }
 
 export default Login;
