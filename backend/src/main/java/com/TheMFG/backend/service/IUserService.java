@@ -1,6 +1,7 @@
 package com.TheMFG.backend.service;
 
 import com.TheMFG.backend.dto.LoginDTO;
+import com.TheMFG.backend.dto.ResponseDTO;
 import com.TheMFG.backend.dto.UserDTO;
 import com.TheMFG.backend.exception.JobPortalException;
 
@@ -16,5 +17,8 @@ public interface IUserService {
 
     //Mail ile gönderilen kodu doğrulama işlemi
     public Boolean verifyMail(String email,String otp) throws JobPortalException;
+
+    // şifre değiştirme işlemi
+    public ResponseDTO changePassword(LoginDTO loginDTO) throws JobPortalException;
 
 }

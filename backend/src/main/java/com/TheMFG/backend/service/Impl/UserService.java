@@ -1,6 +1,7 @@
 package com.TheMFG.backend.service.Impl;
 
 import com.TheMFG.backend.dto.LoginDTO;
+import com.TheMFG.backend.dto.ResponseDTO;
 import com.TheMFG.backend.dto.UserDTO;
 import com.TheMFG.backend.entity.Otp;
 import com.TheMFG.backend.entity.User;
@@ -14,10 +15,12 @@ import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service(value = "userService")
@@ -78,5 +81,23 @@ public class UserService implements IUserService {
             throw new JobPortalException("OTP_INCORRECT");
         }
         return true;
+    }
+
+    @Override
+    public ResponseDTO changePassword(LoginDTO loginDTO) throws JobPortalException{
+        User user = userRepository.findByEmail(loginDTO.getEmail()).orElseThrow(() -> new JobPortalException("USER_NOT_FOUND"));
+        user.setPassword(passwordEncoder.encode(loginDTO.getPassword()));
+        userRepository.save(user);
+        return new ResponseDTO("Şifre Değiştirildi!");
+    }
+
+    @Scheduled(fixedRate = 6000)
+    public void removeExpiredOTPs(){
+        LocalDateTime expiry = LocalDateTime.now().minusMinutes(5);
+        List<Otp> expiredOTPs = otpRepository.findByCreationTimeBefore(expiry);
+        if(!expiredOTPs.isEmpty()){
+            otpRepository.deleteAll(expiredOTPs);
+            System.out.println(expiredOTPs.size() + "süresi dolmuş doğrulama kodu silindi!");
+        }
     }
 }
